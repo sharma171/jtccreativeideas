@@ -18,12 +18,12 @@ const Page = () => {
                     <div className="top-navigation">
                         <Link href="#" className="link">Home
                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4.58398 3L7.58398 6L4.58398 9" stroke="#605F5F" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M4.58398 3L7.58398 6L4.58398 9" stroke="#605F5F" strokeWidth="0.75" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                         </Link>
                         <Link href="#" className="link">Projects
                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4.58398 3L7.58398 6L4.58398 9" stroke="#605F5F" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M4.58398 3L7.58398 6L4.58398 9" stroke="#605F5F" strokeWidth="0.75" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                         </Link>
                         <Link href="#" className="link active">CMS</Link>
@@ -48,13 +48,13 @@ const Page = () => {
                                         <svg width="73" height="73" viewBox="0 0 73 73" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g filter="url(#filter0_d_147_223)">
                                             <rect x="16" y="8" width="41" height="41" rx="20.5" fill="white"/>
-                                            <path d="M30 28H44" stroke="#6C7275" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M30 28L36 34" stroke="#6C7275" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M30 28L36 22" stroke="#6C7275" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M30 28H44" stroke="#6C7275" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                            <path d="M30 28L36 34" stroke="#6C7275" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                            <path d="M30 28L36 22" stroke="#6C7275" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                             </g>
                                             <defs>
-                                            <filter id="filter0_d_147_223" x="0" y="0" width="73" height="73" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                                            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                            <filter id="filter0_d_147_223" x="0" y="0" width="73" height="73" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                                            <feFlood floodOpacity="0" result="BackgroundImageFix"/>
                                             <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
                                             <feOffset dy="8"/>
                                             <feGaussianBlur stdDeviation="8"/>
@@ -69,13 +69,13 @@ const Page = () => {
                                         <svg width="73" height="73" viewBox="0 0 73 73" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g filter="url(#filter0_d_147_218)">
                                             <rect x="57" y="49" width="41" height="41" rx="20.5" transform="rotate(-180 57 49)" fill="white"/>
-                                            <path d="M43 29L29 29" stroke="#141718" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M43 29L37 23" stroke="#141718" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M43 29L37 35" stroke="#141718" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M43 29L29 29" stroke="#141718" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                            <path d="M43 29L37 23" stroke="#141718" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                            <path d="M43 29L37 35" stroke="#141718" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                             </g>
                                             <defs>
-                                            <filter id="filter0_d_147_218" x="0" y="0" width="73" height="73" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                                            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                            <filter id="filter0_d_147_218" x="0" y="0" width="73" height="73" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                                            <feFlood floodOpacity="0" result="BackgroundImageFix"/>
                                             <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
                                             <feOffset dy="8"/>
                                             <feGaussianBlur stdDeviation="8"/>
