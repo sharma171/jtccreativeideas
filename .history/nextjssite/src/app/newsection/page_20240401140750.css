@@ -504,25 +504,7 @@ section.projects {
     padding: 7px 8px 6px 8px;
     border-radius: 10px;
 }
-.detailed-inner .lhs, .detailed-inner .rhs {
+.detailed-inner .lhs {
     display: flex;
     flex-direction: column;
-}
-
-.detailed-inner .lhs .carousel-product {
-    display: flex;
-    flex-direction: row;
-    gap: 21px;
-    flex-wrap: wrap;
-}
-.detailed-inner .lhs .carousel-product .slides:nth-child(1) {
-    width: 100%;
-}
-.detailed-inner .lhs .carousel-product .slides .thumb {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-.detailed-inner .lhs .carousel-product .slides:nth-child(2), .detailed-inner .lhs .carousel-product .slides:nth-child(3), .detailed-inner .lhs .carousel-product .slides:nth-child(4) {
-    width: calc(33.3333% - 14px);
 }

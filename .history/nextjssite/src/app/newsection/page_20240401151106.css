@@ -524,5 +524,5 @@ section.projects {
     object-fit: cover;
 }
 .detailed-inner .lhs .carousel-product .slides:nth-child(2), .detailed-inner .lhs .carousel-product .slides:nth-child(3), .detailed-inner .lhs .carousel-product .slides:nth-child(4) {
-    width: calc(33.3333% - 14px);
+    width: calc(33.3333% - 21px);
 }
