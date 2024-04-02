@@ -1,25 +1,50 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./page.css"
-import Headicon from "./after-head-icon.svg"
 import Image from 'next/image'
 import Link from 'next/link'
-import Projimg1 from './images/projsection1.png'
-import Projimg2 from './images/projsection2.png'
-import Projimg3 from './images/projsection3.png'
-import Downloadicon from './images/Download-icon.svg'
-import Viewicon from './images/view-icon.svg'
+
+import { allProject, projectLanguages, projectList } from '../../apis/apis';
 const Page = () => {
     const [filterActive, setfilterActive] = useState(false);
 
     const toggleFilter = () => {
         setfilterActive(!filterActive);
     }
+    const [state, setState] = useState([])
+    const [tech, setTech] = useState([])
+    const [categoryList, setcategorylist] = useState([])
+    const [project, setProjects] = useState([])
+    const allData = async() =>{
+        const {data} = await projectLanguages()
+        getLists('All')
+        return data && setState(data)
+    }
+    
+    const getLists = async(id) => {
+        const {data} =  await projectList(id)
+      const tech = data && await [...new Set(data.map((el) => el.technology))]
+      setTech(tech)
+      const proj = data && await [...new Set(data.map((el) => el.name))]
+      setcategorylist(proj)
+   return  projects()
+    }
+    const projects = async(id) => {
+        const {data} =  await allProject()
+        return data &&  setProjects(data)
+         
+    }
+    useEffect(() =>{
+        allData()
+    },[])
+
+
+    
     return(
         <>
-        <section className="projects">
+        {/*    <section className="projects">
             <div className="container">
-                <div className="col-flex main-head">
+             <div className="col-flex main-head">
                     <h5 className="small-head">Innovations in Computing</h5>
                     <h3 className="bghead">Projects Empowering <span>Coders
                         <Image src={Headicon}></Image></span></h3>
@@ -116,11 +141,11 @@ const Page = () => {
                                         </a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> 
                     </li>
                 </ul>
-            </div>
-        </section>
+            </div> 
+        </section>*/}
         <section className="project-category">
             <div className="container">
                 <div className="ecom-head">
@@ -138,10 +163,18 @@ const Page = () => {
                         </div>
                         <div className="height-divider"></div>
                         <div className="tabs">
+                            <div className="tab-button active" onClick={(e) => getLists('All')}>All</div>
+                            {state && state.map((el) => (
+                                <div className="tab-button" onClick={(e) => getLists(el.id)}>{el.language}</div>
+
+                            ))}
+                           
+                        </div>
+                        {/* <div className="tabs">
                             <div className="tab-button active">All</div>
                             <div className="tab-button">Basics</div>
                             <div className="tab-button">Javascript</div>
-                        </div>
+                        </div> */}
                     </div>
                     
                 </div>
@@ -165,12 +198,15 @@ const Page = () => {
                                 <h3 className="head">Choose Technology</h3>
                             </div>
                             <ul className="filter-techlist">
-                                <li><label htmlFor="checklist1">HTML</label><input type="checkbox" id="checklist1" /></li>
-                                <li><label htmlFor="checklist2">CSS</label><input type="checkbox" id="checklist2" /></li>
+                                {tech && tech.map((el) =>(
+                                    <li><label htmlFor="checklist2">{el}</label><input type="checkbox" id="checklist2" /></li>
+
+                                ))}
+                                {/* <li><label htmlFor="checklist1">HTML</label><input type="checkbox" id="checklist1" /></li>
                                 <li><label htmlFor="checklist3">JQuery</label><input type="checkbox" id="checklist3" /></li>
                                 <li><label htmlFor="checklist3">CMS</label><input type="checkbox" id="checklist3" /></li>
                                 <li><label htmlFor="checklist3">Code Ignitor</label><input type="checkbox" id="checklist3" /></li>
-                                <li><label htmlFor="checklist3">Php</label><input type="checkbox" id="checklist3" /></li>
+                                <li><label htmlFor="checklist3">Php</label><input type="checkbox" id="checklist3" /></li> */}
                             </ul>
                             <div className="filter-head">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -181,12 +217,15 @@ const Page = () => {
                                 <h3 className="head">Choose Domain</h3>
                             </div>
                             <ul className="filter-techlist">
-                                <li><label htmlFor="checklist1">Hotel Management System</label><input type="checkbox" id="checklist1" /></li>
+                                {categoryList && categoryList.map((el) =>(
+
+                                <li><label htmlFor="checklist3">{el}</label><input type="checkbox" id="checklist3" /></li>
+                                ))}
+                                {/* <li><label htmlFor="checklist1">Hotel Management System</label><input type="checkbox" id="checklist1" /></li>
                                 <li><label htmlFor="checklist2">News Cms</label><input type="checkbox" id="checklist2" /></li>
-                                <li><label htmlFor="checklist3">Payments Apps</label><input type="checkbox" id="checklist3" /></li>
                                 <li><label htmlFor="checklist3">Property Management System</label><input type="checkbox" id="checklist3" /></li>
                                 <li><label htmlFor="checklist3">Nodejs based Projects</label><input type="checkbox" id="checklist3" /></li>
-                                <li><label htmlFor="checklist3">Employee Management System</label><input type="checkbox" id="checklist3" /></li>
+                                <li><label htmlFor="checklist3">Employee Management System</label><input type="checkbox" id="checklist3" /></li> */}
                             </ul>
                         </div>
                         <div className="done-button" onClick={toggleFilter}>
@@ -194,132 +233,42 @@ const Page = () => {
                         </div>
                     </div>
                     <div className="col-md-8 ecom-content">
+
                         <ul className="project-cards">
-                            <li>
-                                
-                                <div className="card-inner">
-                                    <Image src={Projimg1} alt="project" className="thumb"></Image>
-                                    <div className="info">
-                                        <div className="tech-info">
-                                            <span>Html</span>
-                                            <span>Css</span>
-                                            <span>Js</span>
-                                        </div>
-                                        <Link href="/newsection" className="text-link">
-                                            <h3 className="heading">
-                                                Hotel Management System Project in HTML CSS
-                                            </h3>
-                                        </Link>
-                                        <p className="cardpara">
-                                            In this application we believe in the power of collective kindness to transform lives and communities.
-                                        </p>
-                                        <div className="card-button">
-                                            <a href="" className="bot-button">
-                                                <Image src={Downloadicon} alt='icon'></Image>
-                                                Download
-                                            </a>
-                                            <a href="" className="bot-button">
-                                                <Image src={Viewicon} alt='icon'></Image>
-                                                View
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                
-                                    <div className="card-inner">
-                                        <Image src={Projimg2} alt="project" className="thumb"></Image>
-                                        <div className="info">
-                                            <div className="tech-info">
-                                                <span>Html</span>
-                                                <span>Css</span>
-                                                <span>Js</span>
-                                            </div>
-                                            <Link href="/newsection" className="text-link">
-                                                <h3 className="heading">
-                                                    Hotel Management System Project in HTML CSS
-                                                </h3>
-                                            </Link>
-                                            <p className="cardpara">
-                                                In this application we believe in the power of collective kindness to transform lives and communities.
-                                            </p>
-                                            <div className="card-button">
-                                                <a href="" className="bot-button">
-                                                    <Image src={Downloadicon} alt='icon'></Image>
-                                                    Download
-                                                </a>
-                                                <a href="" className="bot-button">
-                                                    <Image src={Viewicon} alt='icon'></Image>
-                                                    View
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                            </li>
-                            <li>
-                                
-                                    <div className="card-inner">
-                                        <Image src={Projimg3} alt="project" className="thumb"></Image>
-                                        <div className="info">
-                                            <div className="tech-info">
-                                                <span>Html</span>
-                                                <span>Css</span>
-                                                <span>Js</span>
-                                            </div>
-                                            <Link href="/newsection" className="text-link">
-                                                <h3 className="heading">
-                                                    Hotel Management System Project in HTML CSS
-                                                </h3>
-                                            </Link>
-                                            <p className="cardpara">
-                                                In this application we believe in the power of collective kindness to transform lives and communities.
-                                            </p>
-                                            <div className="card-button">
-                                                <a href="" className="bot-button">
-                                                    <Image src={Downloadicon} alt='icon'></Image>
-                                                    Download
-                                                </a>
-                                                <a href="" className="bot-button">
-                                                    <Image src={Viewicon} alt='icon'></Image>
-                                                    View
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                            </li>
-                            <li>
-                                
-                                <div className="card-inner">
-                                    <Image src={Projimg1} alt="project" className="thumb"></Image>
-                                    <div className="info">
-                                        <div className="tech-info">
-                                            <span>Html</span>
-                                            <span>Css</span>
-                                            <span>Js</span>
-                                        </div>
-                                        <Link href="/newsection" className="text-link">
-                                            <h3 className="heading">
-                                                Hotel Management System Project in HTML CSS
-                                            </h3>
-                                        </Link>
-                                        <p className="cardpara">
-                                            In this application we believe in the power of collective kindness to transform lives and communities.
-                                        </p>
-                                        <div className="card-button">
-                                            <a href="" className="bot-button">
-                                                <Image src={Downloadicon} alt='icon'></Image>
-                                                Download
-                                            </a>
-                                            <a href="" className="bot-button">
-                                                <Image src={Viewicon} alt='icon'></Image>
-                                                View
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
+                           {project && project.map((el, i) =>(
+                            
+                             <li key={i}>
+                             <div className="card-inner">
+                                 <Image src={el.image1}  quality={100} width={100} height={100} className="thumb"/>
+                                 <div className="info">
+                                     <div className="tech-info">
+
+                                         <span>{el.project_technologie}</span>
+                                         
+                                     </div>
+                                     <Link href="/newsection" className="text-link">
+                                         <h3 className="heading">
+                                            {el.name}
+                                         </h3>
+                                     </Link>
+                                     <p className="cardpara">
+                                        {el.project_description}
+                                     </p>
+                                     <div className="card-button">
+                                         <a href="" className="bot-button">
+                                             <Image src='./images/Download-icon.svg' width={20} height={20} alt='icon'/>
+                                             Download
+                                         </a>
+                                         <a href="" className="bot-button">
+                                             <Image src='./images/view-icon.svg' width={20} height={20} alt='icon'/>
+                                             View
+                                         </a>
+                                     </div>
+                                 </div>
+                             </div>
+                         </li>
+                           ))}
+                            {/* <li>
                                 
                                     <div className="card-inner">
                                         <Image src={Projimg2} alt="project" className="thumb"></Image>
@@ -474,6 +423,100 @@ const Page = () => {
                                         </div>
                                     </div>
                             </li>
+                            <li>
+                                
+                                <div className="card-inner">
+                                    <Image src={Projimg1} alt="project" className="thumb"></Image>
+                                    <div className="info">
+                                        <div className="tech-info">
+                                            <span>Html</span>
+                                            <span>Css</span>
+                                            <span>Js</span>
+                                        </div>
+                                        <Link href="/newsection" className="text-link">
+                                            <h3 className="heading">
+                                                Hotel Management System Project in HTML CSS
+                                            </h3>
+                                        </Link>
+                                        <p className="cardpara">
+                                            In this application we believe in the power of collective kindness to transform lives and communities.
+                                        </p>
+                                        <div className="card-button">
+                                            <a href="" className="bot-button">
+                                                <Image src={Downloadicon} alt='icon'></Image>
+                                                Download
+                                            </a>
+                                            <a href="" className="bot-button">
+                                                <Image src={Viewicon} alt='icon'></Image>
+                                                View
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                
+                                    <div className="card-inner">
+                                        <Image src={Projimg2} alt="project" className="thumb"></Image>
+                                        <div className="info">
+                                            <div className="tech-info">
+                                                <span>Html</span>
+                                                <span>Css</span>
+                                                <span>Js</span>
+                                            </div>
+                                            <Link href="/newsection" className="text-link">
+                                                <h3 className="heading">
+                                                    Hotel Management System Project in HTML CSS
+                                                </h3>
+                                            </Link>
+                                            <p className="cardpara">
+                                                In this application we believe in the power of collective kindness to transform lives and communities.
+                                            </p>
+                                            <div className="card-button">
+                                                <a href="" className="bot-button">
+                                                    <Image src={Downloadicon} alt='icon'></Image>
+                                                    Download
+                                                </a>
+                                                <a href="" className="bot-button">
+                                                    <Image src={Viewicon} alt='icon'></Image>
+                                                    View
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </li>
+                            <li>
+                                
+                                    <div className="card-inner">
+                                        <Image src={Projimg3} alt="project" className="thumb"></Image>
+                                        <div className="info">
+                                            <div className="tech-info">
+                                                <span>Html</span>
+                                                <span>Css</span>
+                                                <span>Js</span>
+                                            </div>
+                                            <Link href="/newsection" className="text-link">
+                                                <h3 className="heading">
+                                                    Hotel Management System Project in HTML CSS
+                                                </h3>
+                                            </Link>
+                                            <p className="cardpara">
+                                                In this application we believe in the power of collective kindness to transform lives and communities.
+                                            </p>
+                                            <div className="card-button">
+                                                <a href="" className="bot-button">
+                                                    <Image src={Downloadicon} alt='icon'></Image>
+                                                    Download
+                                                </a>
+                                                <a href="" className="bot-button">
+                                                    <Image src={Viewicon} alt='icon'></Image>
+                                                    View
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </li> */}
+                            
                         </ul>
                     </div>
                 </div>

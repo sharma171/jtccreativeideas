@@ -1,0 +1,121 @@
+import { NextResponse } from "next/server";
+import { executeQuery } from "../../../conn/conn";
+import { client } from "../../../middelware/redisFile";
+import { S3Client, GetObjectCommand, PutObjectCommand, ListObjectsCommand } from "@aws-sdk/client-s3"
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
+
+
+const s3Client = new S3Client({
+  region : "ap-southeast-2",
+  credentials:{
+      accessKeyId : process.env.ID,
+      secretAccessKey :process.env.KEY
+  }
+})
+
+// Get All Chossing Point
+export async  function GET(req){
+    const redisdata = await client.get("projectLanguage");
+    if(!redisdata){
+        const query =  `Select * from project_languages`
+        const data = await executeQuery(query);
+     
+        if(data.length > 0) {
+        const value =  await JSON.stringify(data)
+        await client.set("projectLanguage", value);
+          return NextResponse.json({data},{success : true}, {status : 200})
+        }
+        else return NextResponse.json({message : "Data Empty"},{success : false}, {status : 206})
+    }else{ 
+     const value = await JSON.parse(redisdata)
+  
+     return NextResponse.json({data : value}, { success : true}, {status : 200})
+}
+}
+
+
+
+export async  function POST(req){
+  const redisdata = await client.get("project");
+  if(!redisdata){
+  const already =  `Select list.project_link, list.name, list.project_technologie,  list.project_description, list.id from jtcindia_projects.project_lists as list Left Join jtcindia_projects.project_languages as language On language.id = list.project_language  WHERE deleted_by = '0'`
+  const data = await executeQuery(already)
+  if(data.length == 0)  return NextResponse.json({message : "Project Not Found" }, { success : false}, {status : 200})
+    
+      for (let index = 0; index < data.length; index++) {
+      const link = data[index].project_link
+        const command = new ListObjectsCommand({
+          Bucket :"jtcporject",
+         
+          Prefix: `${link}/files/` 
+      })
+      const url  = await s3Client.send(command)
+      url && url.Contents.map(async(el,i) => {
+        const mediaType = getMediaType(el.Key);
+        const getUrl = new GetObjectCommand({
+          Bucket :"jtcporject",
+          Key: el.Key
+      })
+        if (mediaType === 'image') {
+      const s3Link  = await getSignedUrl(s3Client,getUrl)
+       return   data[index][`image${i}`] =  String(s3Link)
+        // } else if (mediaType === 'video') {
+        //   const s3Link  = await getSignedUrl(s3Client,getUrl)
+        //   data[index][`video${i}`] = String(s3Link)
+        } else  return null
+      })
+
+      const languageId = data[index].project_technologie
+     
+             const langguageName = `Select technology from jtcindia_projects.project_technologies WHERE id IN (${languageId}) `
+      const executeQueryApi = await executeQuery(langguageName);
+  
+      if(executeQueryApi.length > 0){
+    const values = await executeQueryApi.map((el) => el.technology)
+     data[index]["project_technologie"] = String(values);
+      }
+      
+    }
+    const value =  await JSON.stringify(data)
+    await client.set("project", value);
+    return NextResponse.json({data }, { success : true}, {status : 200})
+  }else{ 
+    const value = await JSON.parse(redisdata)
+ 
+    return NextResponse.json({data : value}, { success : true}, {status : 200})
+}
+}
+export async  function PATCH(req){
+  const {id} = await req.json();
+  const redisdata = await client.get(`techNologye${id}`);
+  if(!redisdata){
+   let findProj = ''
+   
+    if(id != 'All')  findProj = `WHERE project.project_language = ${id}`
+      const query =  `Select tech.technology , project.project_category as name  from  project_lists  as project Left Join   project_technologies as tech On tech.id = project.project_technologie  ${findProj}`
+      const data = await executeQuery(query);
+      if(data.length > 0) {
+      const value =  await JSON.stringify(data)
+      await client.set(`viode${id}`, value);
+        return NextResponse.json({data},{success : true}, {status : 200})
+      }
+      else return NextResponse.json({message : "Data Empty"},{success : false}, {status : 206})
+  }else{ 
+   const value = await JSON.parse(redisdata)
+   return NextResponse.json({data : value}, { success : true}, {status : 200})
+}
+}
+
+
+
+
+function getMediaType(fileName) {
+  const extension = fileName.split('.').pop().toLowerCase();
+  if (['jpg', 'jpeg', 'png', 'gif'].includes(extension)) 
+      return 'image';
+  // } else if (['mp4', 'mov', 'avi', 'mkv','webm'].includes(extension)) {
+  //     return 'video';
+   else 
+      return;
+  
+}
