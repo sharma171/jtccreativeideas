@@ -32,7 +32,7 @@ section.projects {
 }
 .project-cards {
     padding: 0;
-    margin: 45px 0;
+    margin: 30px 0;
     list-style: none;
     display: flex;
     flex-direction: row;
@@ -818,4 +818,21 @@ div.col-divider {
     height: 4px;
     background: linear-gradient(90.59deg, #2E75FF 0.23%, #1E2EBD 98.43%);
     border-radius: 10px;
+}
+@media (max-width:768px) {
+    .detailed-inner .lhs {
+        padding-right: calc(var(--bs-gutter-x)* .5);
+    }
+    .detailed-inner .rhs {
+        padding-left: calc(var(--bs-gutter-x)* .5);
+    }
+    .detailed-inner .lhs .infotab .tabhead .tabnav {
+        font-size: 16px;
+    }
+    .detailed-inner .lhs .infotab .tabhead {
+        gap: 12px;
+    }
+    .detailed-inner .lhs, .detailed-inner .rhs {
+        margin: 24px 0;
+    }
 }
