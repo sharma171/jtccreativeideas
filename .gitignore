@@ -7,7 +7,7 @@
 .yarn/install-state.gz
 /public
 
-/.history
+/.history/
 # testing
 /coverage
 
