@@ -1,7 +1,7 @@
 'use client'
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from 'react';
-import SiteHeader from "../components/header/header";
+// import SiteHeader from "../components/header/header";
 import "../newsection/page.css"
 import Image from 'next/image'
 import Link from 'next/link'
@@ -18,7 +18,7 @@ import SlideImg4 from "./images/slide 4.png"
 const Page = () => {
     return(
         <>
-            <SiteHeader />
+            {/* <SiteHeader /> */}
             <section className="det-page">
                 <div className="container">
                     <div className="top-navigation">
@@ -66,25 +66,6 @@ const Page = () => {
                                             <path d="M27 21L21 27" stroke="#141718" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="infotab">
-                                <div className="tabhead">
-                                    <div className="tabnav active">Overview</div>
-                                    <div className="tabnav">Techscape</div>
-                                    <div className="tabnav">Installation</div>
-                                    <div className="tabnav">Modules</div>
-                                </div>
-                                <div className="info-content">
-                                    <p className="tech-pointers"><strong>Project Name</strong> : Employee Record Management System (ERMS)</p>
-                                    <p className="tech-pointers"><strong>Language Used</strong> : Php</p>
-                                    <p className="tech-pointers"><strong>Database</strong> : My SQL</p>
-                                    <p className="tech-pointers"><strong>User Interface Design</strong> : HTML, AJAX,JQUERY,JAVASCRIPT</p>
-                                    <p className="tech-pointers"><strong>Web Browser</strong> : Mozilla, Google Chrome, IE8, OPERA</p>
-                                    <p className="tech-pointers"><strong>Software</strong> : XAMPP / WAMP / Mamp/ Lamp (anyone)</p>
-                                    <p className="tech-pointers"><strong>Employee Record Management System project divided in two modules</strong> : User Module, Admin Module</p>
-                                    <p className="tech-pointers"><strong>Problem solved by this Project?</strong> : By using this project, company can manage all data online. This project will reduce the paperwork for the company.</p>
-                                    <p className="tech-pointers"><strong>What project does and its working?</strong> : Employee Record Management System project used to manage the data of the employees such as personal details, education details, work exp, etc. This project will reduce the paperwork for the company. Through this project, the company can manage all data online.</p>
                                 </div>
                             </div>
                         </div>
@@ -158,7 +139,33 @@ const Page = () => {
                                         Project report and Synopsis
                                     </div>
                                 </div>
+                                
                                 <div className="col-divider"></div>
+                            </div>
+                        </div>
+                        <div className="col-md-6 lhs">
+                            <div className="infotab">
+                                <div className="tabhead">
+                                    <div className="tabnav active">Overview</div>
+                                    <div className="tabnav">Techscape</div>
+                                    <div className="tabnav">Installation</div>
+                                    <div className="tabnav">Modules</div>
+                                </div>
+                                <div className="info-content">
+                                    <p className="tech-pointers"><strong>Project Name</strong> : Employee Record Management System (ERMS)</p>
+                                    <p className="tech-pointers"><strong>Language Used</strong> : Php</p>
+                                    <p className="tech-pointers"><strong>Database</strong> : My SQL</p>
+                                    <p className="tech-pointers"><strong>User Interface Design</strong> : HTML, AJAX,JQUERY,JAVASCRIPT</p>
+                                    <p className="tech-pointers"><strong>Web Browser</strong> : Mozilla, Google Chrome, IE8, OPERA</p>
+                                    <p className="tech-pointers"><strong>Software</strong> : XAMPP / WAMP / Mamp/ Lamp (anyone)</p>
+                                    <p className="tech-pointers"><strong>Employee Record Management System project divided in two modules</strong> : User Module, Admin Module</p>
+                                    <p className="tech-pointers"><strong>Problem solved by this Project?</strong> : By using this project, company can manage all data online. This project will reduce the paperwork for the company.</p>
+                                    <p className="tech-pointers"><strong>What project does and its working?</strong> : Employee Record Management System project used to manage the data of the employees such as personal details, education details, work exp, etc. This project will reduce the paperwork for the company. Through this project, the company can manage all data online.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-6 rhs">
+                            <div className="product-info">
                                 <div className="project-box">
                                     <h3 className="keypoints-head">This Project includes:</h3>
                                     <input type="text" placeholder="Name" name="name7" id="name7" required=""></input>
