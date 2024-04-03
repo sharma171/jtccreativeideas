@@ -1,10 +1,10 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import "./page.css"
-import Image from 'next/image'
-import Link from 'next/link'
+
 
 import { allProject, projectLanguages, projectList } from '../../apis/apis';
+import Project from '../../components/project/project';
 const Page = () => {
     const [filterActive, setfilterActive] = useState(false);
 
@@ -13,13 +13,13 @@ const Page = () => {
     }
     const [state, setState] = useState([])
     const [tech, setTech] = useState([])
-    const [project, setProjects] = useState([])
+  
 
     const allData = async() =>{
         const {data} = await projectLanguages()
         getLists('All')
-         data && setState(data)
-         return projects()
+        return data && setState(data)
+       
     }
     
     const getLists = async(id) => {
@@ -222,46 +222,8 @@ const Page = () => {
                         </div>
                     </div>
                     <div className="col-md-8 ecom-content">
-
-                        <ul className="project-cards">
-                           {project && project.flatMap((el, i) =>(
-                            
-                             <li key={i}>
-                             <div className="card-inner">
-                                {/* <img src={el.image}/> */}
-                                 <Image src={el.image} width={400} height={400} className="thumb"/>
-                                 <div className="info">
-
-                                     <div className="tech-info">
-                                         {el.project_technologie && el.project_technologie.map((ab) =>(
-                                            <span>{ab.technology}</span>
-                                         ))}
-                                         
-                                     </div>
-                                     <Link href={el.project_link} className="text-link">
-                                         <h3 className="heading">
-                                            {el.name}
-                                         </h3>
-                                     </Link>
-                                     <p className="cardpara">
-                                        {el.project_description}
-                                     </p>
-                                     <div className="card-button">
-                                         <a href="" className="bot-button">
-                                             <Image src='./images/Download-icon.svg' width={20} height={20} alt='icon'/>
-                                             Download
-                                         </a>
-                                         <a href="" className="bot-button">
-                                             <Image src='./images/view-icon.svg' width={20} height={20} alt='icon'/>
-                                             View
-                                         </a>
-                                     </div>
-                                 </div>
-                             </div>
-                         </li>
-                           ))}                    
-                        </ul>
-                    </div>
+                   <Project/>
+                </div>
                 </div>
             </div>
         </section>

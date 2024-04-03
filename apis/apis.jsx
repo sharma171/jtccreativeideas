@@ -14,6 +14,7 @@ let navbar = "navbar"
 let tutorial = "tutorial"
 let compiler = "compiler"
 let projectComponent = "projectComponent"
+let parts = "parts"
 
 
 // All Lists of Blogs 
@@ -52,7 +53,6 @@ export const projectList = async (id) => {
 // All Language of Projects
 export const allProject = async (arrayOfTech,arrayOfCategory) => {
   try {
-    console.log(arrayOfTech,arrayOfCategory);
     // const value = JSON.stringify({ arrayOfTech,arrayOfCategory})
     const { data } = await instance.post(projectComponent);
     return data;
@@ -66,6 +66,17 @@ export const singleProject = async (link) => {
     
     const value = JSON.stringify({link})
     const { data } = await instance.put(projectComponent, value);
+    return data;
+  } catch (err) {
+    return err
+  }
+};
+// All Language of Projects
+export const projectTopics = async (id) => {
+  try {
+    
+    const value = JSON.stringify({id})
+    const { data } = await instance.patch(parts, value);
     return data;
   } catch (err) {
     return err

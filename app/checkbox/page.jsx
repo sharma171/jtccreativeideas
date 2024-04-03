@@ -37,7 +37,7 @@ function Page() {
   const filteredContent = checkedValues.length
     ? content.filter((item) => checkedValues.includes(item.category))
     : content;
-    console.log(filteredContent)
+   
 
   return (
     <div>
