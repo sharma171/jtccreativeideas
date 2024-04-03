@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import "./page.css"
 import Image from 'next/image'
 import Link from 'next/link'
+import DownloadIcon from "../../public/images/Download-icon.svg"
+import ViewIcon from "../../public/images/view-icon.svg"
 
 import { allProject, projectLanguages, projectList } from '../../apis/apis';
 const Page = () => {
@@ -248,11 +250,11 @@ const Page = () => {
                                      </p>
                                      <div className="card-button">
                                          <a href="" className="bot-button">
-                                             <Image src='./images/Download-icon.svg' width={20} height={20} alt='icon'/>
+                                             <Image src={DownloadIcon} width={20} height={20} alt='icon'/>
                                              Download
                                          </a>
                                          <a href="" className="bot-button">
-                                             <Image src='./images/view-icon.svg' width={20} height={20} alt='icon'/>
+                                             <Image src={ViewIcon} width={20} height={20} alt='icon'/>
                                              View
                                          </a>
                                      </div>
