@@ -60,6 +60,17 @@ export const allProject = async (arrayOfTech,arrayOfCategory) => {
     return err
   }
 };
+// All Language of Projects
+export const singleProject = async (link) => {
+  try {
+    
+    const value = JSON.stringify({link})
+    const { data } = await instance.put(projectComponent, value);
+    return data;
+  } catch (err) {
+    return err
+  }
+};
 
 // Get a single blog
 export const singleBlog = async (id) => {

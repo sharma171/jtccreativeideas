@@ -1,53 +1,98 @@
 'use client'
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState } from 'react';
-// import SiteHeader from "../components/header/header";
+import React, { useEffect, useState } from 'react';
 import "../newsection/page.css"
 import Image from 'next/image'
 import Link from 'next/link'
-import Projimg1 from "../newsection/images/projsection1.png"
-import Projimg2 from "../newsection/images/projsection2.png"
-import Projimg3 from "../newsection/images/projsection3.png"
-import Downloadicon from "../newsection/images/Download-icon.svg"
-import Viewicon from "../newsection/images/view-icon.svg"
-import SlideImg1 from "./images/slide 1.png"
-import SlideImg2 from "./images/slide 2.png"
-import SlideImg3 from "./images/slide 3.png"
-import SlideImg4 from "./images/slide 4.png"
+import { useParams } from "next/navigation";
+import { singleProject } from "../../apis/apis";
+
+
 
 const Page = () => {
+    const {project} = useParams()
+   const getPrjectData = async() => {
+const {data} =  await singleProject(project)
+console.log(data);
+   }
+
+   useEffect(() => {
+getPrjectData()
+   },[project])
     return(
         <>
             {/* <SiteHeader /> */}
             <section className="det-page">
                 <div className="container">
                     <div className="top-navigation">
-                        <Link href="#" className="link">Home
+                        <Link href="/" className="link">Home
                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M4.58398 3L7.58398 6L4.58398 9" stroke="#605F5F" strokeWidth="0.75" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                         </Link>
-                        <Link href="#" className="link">Projects
+                        <Link href="/newsection" className="link">Projects
                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M4.58398 3L7.58398 6L4.58398 9" stroke="#605F5F" strokeWidth="0.75" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                         </Link>
-                        <Link href="#" className="link active">CMS</Link>
+                        <Link href={`/${project}`} className="link active">{project}</Link>
                     </div>
                     <div className="detailed-inner row">
+                    {/* id
+: 
+2
+image1
+: 
+"https://jtcporject.s3.ap-southeast-2.amazonaws.com/education/files/the-rock-black-adam-2020_3314x1865_xtrafondos.com.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIASH3TFKWYKMYXIVWJ%2F20240403%2Fap-southeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240403T093533Z&X-Amz-Expires=900&X-Amz-Signature=894fe68f64889441dc73cd50a3d8ce844400ce0c8f7738e0ac0cd26ddbf46f01&X-Amz-SignedHeaders=host&x-id=GetObject"
+image2
+: 
+"https://jtcporject.s3.ap-southeast-2.amazonaws.com/education/files/the-suicide-squad-2021-movies-sylvester-stallone-pete-5120x3483-6271.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIASH3TFKWYKMYXIVWJ%2F20240403%2Fap-southeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240403T093533Z&X-Amz-Expires=900&X-Amz-Signature=b486563c9661d8e628d5045329de952ac9aa802fb54bef66751ef067667de814&X-Amz-SignedHeaders=host&x-id=GetObject"
+language
+: 
+"C++"
+meta_description
+: 
+"ftugjdr"
+meta_keywords
+: 
+"dytrfgxgf"
+meta_tags
+: 
+"ftydrt"
+meta_title
+: 
+"gftufty"
+name
+: 
+"Education"
+project_description
+: 
+"sd"
+project_link
+: 
+"education"
+project_module
+: 
+"ht tft"
+project_technologie
+: 
+"HTML,CSS,Redis,React"
+video0
+: 
+"https://jtcporject.s3.ap-southeast-2.amazonaws.com/education/files/Chandigarh%20-%20%20Dilpreet%20Dhillon%20%28Full%20Video%29%20Gurlej%20Akhtar%20%C3%AF%C2%BD%C2%9C%20Parmish%20Verma%20%C3%AF%C2%BD%C2%9C%20Latest%20Punjabi%20Song%202023.webm?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIASH3TFKWYKMYXIVWJ%2F20240403%2Fap-southeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240403T093533Z&X-Amz-Expires=900&X-Amz-Signature=04c0a451aa072cc9552fa34c25bd87bca957fbb624842844049c69a7928b1216&X-Amz-SignedHeaders=host&x-id=GetObje */}
                         <div className="col-md-6 lhs">
                             <div className="carousel-product">
                                 <div className="slide1 slides">
-                                    <Image src={SlideImg1} className="thumb" alt="slideImages"></Image>
+                                    <Image src='/images/slide1.png'  width={500} height={500} className="thumb" alt="slideImages"/>
                                 </div>
                                 <div className="slide2 slides">
-                                    <Image src={SlideImg2} className="thumb" alt="slideImages"></Image>
+                                    <Image src='/images/slide 2.png'   width={500} height={500} className="thumb" alt="slideImages"/>
                                 </div>
                                 <div className="slide3 slides">
-                                    <Image src={SlideImg3} className="thumb" alt="slideImages"></Image>
+                                    <Image src='/images/slide 3.png'   width={500} height={500} className="thumb" alt="slideImages"/>
                                 </div>
                                 <div className="slide4 slides">
-                                    <Image src={SlideImg4} className="thumb" alt="slideImages"></Image>
+                                    <Image src='/images/slide 4.png'   width={500} height={500} className="thumb" alt="slideImages"/>
                                 </div>
                                 <div className="navigation">
                                     <div className="prev">
@@ -216,7 +261,7 @@ const Page = () => {
                                 <li>
                                     
                                     <div className="card-inner">
-                                        <Image src={Projimg1} alt="project" className="thumb"></Image>
+                                        <Image src='/images/projsection1.png'   width={500} height={500}  alt="project" className="thumb"/>
                                         <div className="info">
                                             <div className="tech-info">
                                                 <span>Html</span>
@@ -233,11 +278,11 @@ const Page = () => {
                                             </p>
                                             <div className="card-button">
                                                 <a href="" className="bot-button">
-                                                    <Image src={Downloadicon} alt='icon'></Image>
+                                                    <Image src='/images/Download-icon.svg'  width={10} height={10} alt='icon'/>
                                                     Download
                                                 </a>
                                                 <a href="" className="bot-button">
-                                                    <Image src={Viewicon} alt='icon'></Image>
+                                                    <Image src='/images/view-icon.svg'  width={10} height={10} alt='icon'/>
                                                     View
                                                 </a>
                                             </div>
@@ -247,7 +292,7 @@ const Page = () => {
                                 <li>
                                     
                                         <div className="card-inner">
-                                            <Image src={Projimg2} alt="project" className="thumb"></Image>
+                                            <Image src='/images/projsection2.png'   width={500} height={500}  alt="project" className="thumb"/>
                                             <div className="info">
                                                 <div className="tech-info">
                                                     <span>Html</span>
@@ -264,11 +309,11 @@ const Page = () => {
                                                 </p>
                                                 <div className="card-button">
                                                     <a href="" className="bot-button">
-                                                        <Image src={Downloadicon} alt='icon'></Image>
+                                                        <Image src='/images/Download-icon.svg' width={10} height={10} alt='icon'/>
                                                         Download
                                                     </a>
                                                     <a href="" className="bot-button">
-                                                        <Image src={Viewicon} alt='icon'></Image>
+                                                        <Image src='/images/view-icon.svg' width={10} height={10} alt='icon'/>
                                                         View
                                                     </a>
                                                 </div>
@@ -278,7 +323,7 @@ const Page = () => {
                                 <li>
                                     
                                         <div className="card-inner">
-                                            <Image src={Projimg3} alt="project" className="thumb"></Image>
+                                            <Image src='/images/projsection3.png'  width={500} height={500}  alt="project" className="thumb"/>
                                             <div className="info">
                                                 <div className="tech-info">
                                                     <span>Html</span>
@@ -295,11 +340,11 @@ const Page = () => {
                                                 </p>
                                                 <div className="card-button">
                                                     <a href="" className="bot-button">
-                                                        <Image src={Downloadicon} alt='icon'></Image>
+                                                        <Image src='/images/Download-icon.svg'    width={10} height={10} alt='icon'/>
                                                         Download
                                                     </a>
                                                     <a href="" className="bot-button">
-                                                        <Image src={Viewicon} alt='icon'></Image>
+                                                        <Image src='/images/view-icon.svg'   width={10} height={10}  alt='icon'/>
                                                         View
                                                     </a>
                                                 </div>
