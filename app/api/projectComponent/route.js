@@ -36,6 +36,9 @@ export async  function GET(req){
 
 
 export async  function POST(req){
+  // const {arrayOfTech,arrayOfCategory} = await req.json();
+  // console.log("40  ",arrayOfTech);
+  // console.log("41  ",arrayOfCategory);
   const redisdata = await client.get("project");
   if(!redisdata){
   const already =  `Select list.project_link, list.name, list.project_technologie,  list.project_description, list.id from jtcindia_projects.project_lists as list Left Join jtcindia_projects.project_languages as language On language.id = list.project_language  WHERE deleted_by = '0'`
@@ -46,33 +49,25 @@ export async  function POST(req){
       const link = data[index].project_link
         const command = new ListObjectsCommand({
           Bucket :"jtcporject",
-         
           Prefix: `${link}/files/` 
       })
       const url  = await s3Client.send(command)
-      url && url.Contents.map(async(el,i) => {
-        const mediaType = getMediaType(el.Key);
+      const key = url && url.Contents && url.Contents[1].Key
+     
         const getUrl = new GetObjectCommand({
           Bucket :"jtcporject",
-          Key: el.Key
-      })
-        if (mediaType === 'image') {
-      const s3Link  = await getSignedUrl(s3Client,getUrl)
-       return   data[index][`image${i}`] =  String(s3Link)
-        // } else if (mediaType === 'video') {
-        //   const s3Link  = await getSignedUrl(s3Client,getUrl)
-        //   data[index][`video${i}`] = String(s3Link)
-        } else  return null
+          Key: key
       })
 
+      const s3Link  = await getSignedUrl(s3Client,getUrl)
+       data[index][`image`] =  String(s3Link)
+      
       const languageId = data[index].project_technologie
      
-             const langguageName = `Select technology from jtcindia_projects.project_technologies WHERE id IN (${languageId}) `
+      const langguageName = `Select technology from jtcindia_projects.project_technologies WHERE id IN (${languageId}) `
       const executeQueryApi = await executeQuery(langguageName);
-  
       if(executeQueryApi.length > 0){
-    const values = await executeQueryApi.map((el) => el.technology)
-     data[index]["project_technologie"] = String(values);
+     data[index]["project_technologie"] = executeQueryApi;
       }
       
     }
@@ -85,15 +80,22 @@ export async  function POST(req){
     return NextResponse.json({data : value}, { success : true}, {status : 200})
 }
 }
+
+
 export async  function PATCH(req){
   const {id} = await req.json();
   const redisdata = await client.get(`techNologye${id}`);
   if(!redisdata){
    let findProj = ''
-   
-    if(id != 'All')  findProj = `WHERE project.project_language = ${id}`
-      const query =  `Select tech.technology , project.project_category as name  from  project_lists  as project Left Join   project_technologies as tech On tech.id = project.project_technologie  ${findProj}`
-      const data = await executeQuery(query);
+   let findTech = ''
+    if(id != 'All')  findProj = `&& project_language = ${id}`
+    if(id != 'All')  findTech = `&& FIND_IN_SET(${id}, language_id) > 0`
+    // const query =  `Select tech.technology , project.project_category as name  from  project_lists  as project  Join   project_technologies as tech On tech.id = project.project_technologie   ${findProj}`
+    const queryProject = `Select DISTINCT project_category as category  from  project_lists WHERE deleted_by = '0' ${findProj}`
+      const dataProject = await executeQuery(queryProject);
+    const queryTech = `Select DISTINCT technology  from   project_technologies  WHERE deleted_by = '0' ${findTech} `
+      const dataTech = await executeQuery(queryTech);
+     const data = [{project : dataProject, technology : dataTech}]
       if(data.length > 0) {
       const value =  await JSON.stringify(data)
       await client.set(`viode${id}`, value);
@@ -107,15 +109,3 @@ export async  function PATCH(req){
 }
 
 
-
-
-function getMediaType(fileName) {
-  const extension = fileName.split('.').pop().toLowerCase();
-  if (['jpg', 'jpeg', 'png', 'gif'].includes(extension)) 
-      return 'image';
-  // } else if (['mp4', 'mov', 'avi', 'mkv','webm'].includes(extension)) {
-  //     return 'video';
-   else 
-      return;
-  
-}

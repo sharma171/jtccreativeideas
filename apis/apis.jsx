@@ -50,9 +50,10 @@ export const projectList = async (id) => {
 };
 
 // All Language of Projects
-export const allProject = async () => {
+export const allProject = async (arrayOfTech,arrayOfCategory) => {
   try {
-    // const value = JSON.stringify({ id })
+    console.log(arrayOfTech,arrayOfCategory);
+    // const value = JSON.stringify({ arrayOfTech,arrayOfCategory})
     const { data } = await instance.post(projectComponent);
     return data;
   } catch (err) {
