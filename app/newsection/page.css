@@ -54,9 +54,19 @@ section.projects {
     width: 100%;
     max-width: 100%;
     height: auto;
+    min-height: 225px;
+    max-height: 225px;
     object-fit: cover;
     border-top-left-radius: 18px;
     border-top-right-radius: 18px;
+}
+.project-cards li .card-inner .info .cardpara {
+    display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+  min-height: 107px;
+  max-height: 107px;
 }
 .project-cards li .card-inner .info {
     padding: 18px 20px;
@@ -111,6 +121,11 @@ section.projects {
     gap: 12px;
     margin-bottom: 5px;
 }
+.project-cards li .card-inner .info .card-button .bot-button img{
+    width: 20px;
+    height: 20px;
+    margin: -4px 4px 0 0;
+}
 .project-cards li .card-inner .info .card-button .bot-button {
     background: radial-gradient(#5C6AC8, #121F9F);
     padding: 6px 13px;
@@ -121,6 +136,11 @@ section.projects {
     text-decoration: none;
     color: #fff;
     font-weight: 500;
+}
+.more-detailed .project-cards {
+    max-width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
 }
 @media (max-width: 1200px) and (min-width:992px){
     .project-cards li .card-inner .info .tech-info span{
@@ -832,6 +852,12 @@ div.col-divider {
     height: 4px;
     background: linear-gradient(90.59deg, #2E75FF 0.23%, #1E2EBD 98.43%);
     border-radius: 10px;
+}
+@media (min-width:768px) {
+    .more-detailed .project-cards li {
+        min-width: calc(33.33333333333333% - 30px);
+        width: calc(33.33333333333333% - 30px);
+    }
 }
 @media (max-width:768px) {
     .detailed-inner .lhs {
