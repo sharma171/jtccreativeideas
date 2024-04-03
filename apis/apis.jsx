@@ -83,6 +83,28 @@ export const projectTopics = async (id) => {
   }
 };
 
+// All Language of Projects
+export const downloadProject = async (field) => {
+ 
+  
+//  handel Download Brousher form
+  try {
+    const response = await instance.post(parts, JSON.stringify(field), { responseType: 'blob' });
+    const blob = new Blob([response.data], { type: response.headers[ 'application/zip'] });
+    
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `${field.folder}.zip`;
+    
+    return link.click();
+  } catch (err) {
+    return err;
+  }
+
+
+
+};
+
 // Get a single blog
 export const singleBlog = async (id) => {
   try {
