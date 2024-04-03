@@ -198,7 +198,7 @@ const Page = () => {
                             </div>
                             <ul className="filter-techlist">
                                 {tech && tech.technology && tech.technology.map((el) =>(
-                                    <li><label htmlFor="checklist2" >{el.technology}</label><input type="checkbox"  onClick={(e) => getSeletedTechnology(el.technology)}/></li>
+                                    <li><label htmlhtmlFor="checklist2" >{el.technology}</label><input type="checkbox"  onClick={(e) => getSeletedTechnology(el.technology)}/></li>
 
                                 ))}
                                        </ul>
@@ -213,7 +213,7 @@ const Page = () => {
                             <ul className="filter-techlist">
                                 {tech && tech.project && tech.project.map((el) =>(
 
-                                <li><label htmlFor="checklist3">{el.category}</label><input type="checkbox" id="checklist3" onClick={(e) => getSeletedCategory(el.category)}/></li>
+                                <li><label htmlhtmlFor="checklist3">{el.category}</label><input type="checkbox" id="checklist3" onClick={(e) => getSeletedCategory(el.category)}/></li>
                                 ))}
                                 </ul>
                         </div>

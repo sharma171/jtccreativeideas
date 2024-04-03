@@ -11,14 +11,17 @@ import { singleProject } from "../../apis/apis";
 
 const Page = () => {
     const {project} = useParams()
+    const [state, setState] = useState([])
    const getPrjectData = async() => {
 const {data} =  await singleProject(project)
 console.log(data);
+return data && setState(data)
    }
 
    useEffect(() => {
 getPrjectData()
    },[project])
+ 
     return(
         <>
             {/* <SiteHeader /> */}
@@ -80,35 +83,45 @@ project_technologie
 video0
 : 
 "https://jtcporject.s3.ap-southeast-2.amazonaws.com/education/files/Chandigarh%20-%20%20Dilpreet%20Dhillon%20%28Full%20Video%29%20Gurlej%20Akhtar%20%C3%AF%C2%BD%C2%9C%20Parmish%20Verma%20%C3%AF%C2%BD%C2%9C%20Latest%20Punjabi%20Song%202023.webm?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIASH3TFKWYKMYXIVWJ%2F20240403%2Fap-southeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240403T093533Z&X-Amz-Expires=900&X-Amz-Signature=04c0a451aa072cc9552fa34c25bd87bca957fbb624842844049c69a7928b1216&X-Amz-SignedHeaders=host&x-id=GetObje */}
-                        <div className="col-md-6 lhs">
+                       {state && state.map((el, i) => (
+                        <>
+                         <div className="col-md-6 lhs">
                             <div className="carousel-product">
                                 <div className="slide1 slides">
-                                    <Image src='/images/slide1.png'  width={500} height={500} className="thumb" alt="slideImages"/>
+                                    {/* <Image src='/images/slide1.png'  width={500} height={500} className="thumb" alt="slideImages"/>
+                                     */}
+                                  <video width="320" height="240" controls preload="none">      <source src={el.video3} type="video/mp4" />      <track        src={el.video3}        kind="subtitles"        srcLang="en"        label="English"      />      Your browser does not support the video tag.    </video>   
                                 </div>
+                                {[0,1,2,3].map((ab) =>{
+                                     if(el[`image${ab}`])
+                                     return   (
                                 <div className="slide2 slides">
-                                    <Image src='/images/slide 2.png'   width={500} height={500} className="thumb" alt="slideImages"/>
+                                    <Image src={el[`image${ab}`]}   width={400} height={400}  className="thumb" alt={el[`image${ab}`]}/>
                                 </div>
-                                <div className="slide3 slides">
+
+                                )}
+                                )}
+                                {/* <div className="slide3 slides">
                                     <Image src='/images/slide 3.png'   width={500} height={500} className="thumb" alt="slideImages"/>
                                 </div>
                                 <div className="slide4 slides">
                                     <Image src='/images/slide 4.png'   width={500} height={500} className="thumb" alt="slideImages"/>
-                                </div>
+                                </div> */}
                                 <div className="navigation">
                                     <div className="prev">
                                         <svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <rect width="41" height="41" rx="20.5" fill="white"/>
-                                            <path d="M14 20H28" stroke="#6C7275" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M14 20L20 26" stroke="#6C7275" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M14 20L20 14" stroke="#6C7275" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M14 20H28" stroke="#6C7275" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                            <path d="M14 20L20 26" stroke="#6C7275" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                            <path d="M14 20L20 14" stroke="#6C7275" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                         </svg>
                                     </div>
                                     <div className="next">
                                         <svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <rect x="41" y="41" width="41" height="41" rx="20.5" transform="rotate(-180 41 41)" fill="white"/>
-                                            <path d="M27 21L13 21" stroke="#141718" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M27 21L21 15" stroke="#141718" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M27 21L21 27" stroke="#141718" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M27 21L13 21" stroke="#141718" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                            <path d="M27 21L21 15" stroke="#141718" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                            <path d="M27 21L21 27" stroke="#141718" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                         </svg>
                                     </div>
                                 </div>
@@ -154,6 +167,8 @@ video0
                                 <p className="tech-pointers"><strong>Description</strong> : Seamlessly store diverse employee data, from personal details to performance metrics, with ironclad security measures in place. With robust authentication systems, rest assured only authorized personnel access and modify data. Seamlessly store diverse employee data, from personal details to performance metrics, with ironclad security measures in place. With robust authentication systems, rest assured only authorized personnel access and modify data.</p>
                             </div>
                         </div>
+                        </>
+                       ))}
                         <div className="col-md-6 lhs">
                             <div className="infotab">
                                 <div className="tabhead">
@@ -188,17 +203,17 @@ video0
                                     </div>
                                     <div className="ptrs">
                                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M26.875 2.5H3.125C2.77982 2.5 2.5 2.80526 2.5 3.18182V9.31819C2.5 9.69475 2.77982 10 3.125 10H26.875C27.2202 10 27.5 9.69475 27.5 9.31819V3.18182C27.5 2.80526 27.2202 2.5 26.875 2.5Z" fill="#36528A" stroke="black" stroke-linejoin="round"/>
-                                            <path d="M26.875 20H3.125C2.77982 20 2.5 20.3053 2.5 20.6818V26.8182C2.5 27.1947 2.77982 27.5 3.125 27.5H26.875C27.2202 27.5 27.5 27.1947 27.5 26.8182V20.6818C27.5 20.3053 27.2202 20 26.875 20Z" fill="#36528A" stroke="black" stroke-linejoin="round"/>
-                                            <path d="M8.75 10V15.0052L21.25 15.0108V20" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M11.25 23.75H18.75" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M11.25 6.25H18.75" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M26.875 2.5H3.125C2.77982 2.5 2.5 2.80526 2.5 3.18182V9.31819C2.5 9.69475 2.77982 10 3.125 10H26.875C27.2202 10 27.5 9.69475 27.5 9.31819V3.18182C27.5 2.80526 27.2202 2.5 26.875 2.5Z" fill="#36528A" stroke="black" strokeLinejoin="round"/>
+                                            <path d="M26.875 20H3.125C2.77982 20 2.5 20.3053 2.5 20.6818V26.8182C2.5 27.1947 2.77982 27.5 3.125 27.5H26.875C27.2202 27.5 27.5 27.1947 27.5 26.8182V20.6818C27.5 20.3053 27.2202 20 26.875 20Z" fill="#36528A" stroke="black" strokeLinejoin="round"/>
+                                            <path d="M8.75 10V15.0052L21.25 15.0108V20" stroke="black" strokeLinecap="round" strokeLinejoin="round"/>
+                                            <path d="M11.25 23.75H18.75" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+                                            <path d="M11.25 6.25H18.75" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
                                         </svg>
                                         Readme & Dependencies Files
                                     </div>
                                     <div className="ptrs">
                                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M10.625 26.875L15 22.5L19.375 26.875M15 2.5V5M11.25 15V17.5M15 12.5V17.5M18.75 10V17.5M27.5 5.75V21.75C27.5 21.8485 27.4806 21.946 27.4429 22.037C27.4052 22.128 27.35 22.2107 27.2803 22.2803C27.2107 22.35 27.128 22.4052 27.037 22.4429C26.946 22.4806 26.8485 22.5 26.75 22.5H3.25C3.05109 22.5 2.86032 22.421 2.71967 22.2803C2.57902 22.1397 2.5 21.9489 2.5 21.75V5.75C2.5 5.55109 2.57902 5.36032 2.71967 5.21967C2.86032 5.07902 3.05109 5 3.25 5H26.75C26.9489 5 27.1397 5.07902 27.2803 5.21967C27.421 5.36032 27.5 5.55109 27.5 5.75Z" stroke="#36528A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M10.625 26.875L15 22.5L19.375 26.875M15 2.5V5M11.25 15V17.5M15 12.5V17.5M18.75 10V17.5M27.5 5.75V21.75C27.5 21.8485 27.4806 21.946 27.4429 22.037C27.4052 22.128 27.35 22.2107 27.2803 22.2803C27.2107 22.35 27.128 22.4052 27.037 22.4429C26.946 22.4806 26.8485 22.5 26.75 22.5H3.25C3.05109 22.5 2.86032 22.421 2.71967 22.2803C2.57902 22.1397 2.5 21.9489 2.5 21.75V5.75C2.5 5.55109 2.57902 5.36032 2.71967 5.21967C2.86032 5.07902 3.05109 5 3.25 5H26.75C26.9489 5 27.1397 5.07902 27.2803 5.21967C27.421 5.36032 27.5 5.55109 27.5 5.75Z" stroke="#36528A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                                         </svg>
                                         Presentation PPT available
                                     </div>
@@ -211,9 +226,23 @@ video0
                                 </div>
                                 
                                 <div className="col-divider"></div>
+                                <div className="project-box">
+                                    <h3 className="keypoints-head">Download Project Bundle</h3>
+                                    <input type="text" placeholder="Name" name="name7" id="name7" required=""></input>
+                                    <div className="input-box mb--20">
+                                        <input type="tel" id="phone7" className="phone-input" name="phone"
+                                            placeholder="Mobile Number" required></input>
+                                    </div>
+                                    <div className="t-and-c">
+                                        <label><input id="checkbox-7" type="checkbox" required=""></input></label>
+                                        <label htmlFor="checkbox-7"> I have reviewed all <Link href="termsandcondition.html" target="_blank"> Terms and
+                                                                    Conditions</Link>.</label>
+                                    </div>
+                                    <Link href="#" className="button">Download Project</Link>
+                                </div>
                             </div>
                         </div>
-                        <div className="col-md-6 lhs">
+                        {/* <div className="col-md-6 lhs">
                             <div className="infotab">
                                 <div className="tabhead">
                                     <div className="tabnav active">Overview</div>
@@ -233,25 +262,7 @@ video0
                                     <p className="tech-pointers"><strong>What project does and its working?</strong> : Employee Record Management System project used to manage the data of the employees such as personal details, education details, work exp, etc. This project will reduce the paperwork for the company. Through this project, the company can manage all data online.</p>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col-md-6 rhs">
-                            <div className="product-info">
-                                <div className="project-box">
-                                    <h3 className="keypoints-head">Download Project Bundle</h3>
-                                    <input type="text" placeholder="Name" name="name7" id="name7" required=""></input>
-                                    <div className="input-box mb--20">
-                                        <input type="tel" id="phone7" className="phone-input" name="phone"
-                                            placeholder="Mobile Number" required></input>
-                                    </div>
-                                    <div className="t-and-c">
-                                        <label><input id="checkbox-7" type="checkbox" required=""></input></label>
-                                        <label for="checkbox-7"> I have reviewed all <Link href="termsandcondition.html" target="_blank"> Terms and
-                                                                    Conditions</Link>.</label>
-                                    </div>
-                                    <Link href="#" className="button">Download Project</Link>
-                                </div>
-                            </div>
-                        </div>
+                        </div> */}
                         <div className="more-detailed">
                             <div className="more-nav">
                                 <div className="tab-nav active">Similar Projects</div>

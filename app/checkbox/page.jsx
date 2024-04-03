@@ -41,28 +41,28 @@ function Page() {
 
   return (
     <div>
-      <label htmlFor="checklist3">EmployeeManagementSystem</label>
+      <label htmlhtmlFor="checklist3">EmployeeManagementSystem</label>
       <input
         type="checkbox"
         id="checklist3"
         value="EmployeeManagementSystem"
         onChange={handleCheckboxData}
       />
-      <label htmlFor="checklist4">nodebasedprojects</label>
+      <label htmlhtmlFor="checklist4">nodebasedprojects</label>
       <input
         type="checkbox"
         id="checklist4"
         value="nodebasedprojects"
         onChange={handleCheckboxData}
       />
-      <label htmlFor="checklist5">ams</label>
+      <label htmlhtmlFor="checklist5">ams</label>
       <input
         type="checkbox"
         id="checklist5"
         value="ams"
         onChange={handleCheckboxData}
       />
-      <label htmlFor="checklist6">pms</label>
+      <label htmlhtmlFor="checklist6">pms</label>
       <input
         type="checkbox"
         id="checklist6"
