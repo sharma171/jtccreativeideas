@@ -70,6 +70,8 @@ section.projects {
     flex-direction: row;
     align-items: center;
     gap: 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 .project-cards li .card-inner .info .tech-info span {
     height: 25px;
@@ -831,8 +833,40 @@ div.col-divider {
     }
     .detailed-inner .lhs .infotab .tabhead {
         gap: 12px;
+
+        overflow-x: scroll;
+        overflow-y: hidden;
+        max-width: 100%;
     }
     .detailed-inner .lhs, .detailed-inner .rhs {
         margin: 24px 0;
+    }
+
+    .detailed-inner .more-detailed .more-nav {
+        overflow-x: scroll;
+        overflow-y: hidden;
+    }
+    .detailed-inner .more-detailed .more-nav .tab-nav {
+        font-size: 18px;
+        line-height: 24px;
+        min-width: 167px;
+    }
+    .detailed-inner .lhs .carousel-product .slides:nth-child(1) {
+        height: 52vw;
+    }
+    .detailed-inner .lhs .carousel-product .slides:nth-child(1) .thumb {
+        height: 52vw;
+    }
+    .detailed-inner .lhs .carousel-product .navigation {
+        top: 21vw;
+    }
+    .detailed-inner .lhs, .detailed-inner .rhs {
+        margin: 0 0;
+    }
+    .detailed-inner .lhs .infotab {
+        margin-bottom: 0;
+    }
+    .detailed-inner .rhs .product-info .project-box {
+        margin-bottom: 24px;
     }
 }
