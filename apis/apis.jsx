@@ -89,14 +89,31 @@ export const downloadProject = async (field) => {
   
 //  handel Download Brousher form
   try {
-    const response = await instance.post(parts, JSON.stringify(field), { responseType: 'blob' });
-    const blob = new Blob([response.data], { type: response.headers[ 'application/zip'] });
+    const {data} = await instance.post(parts, JSON.stringify(field));
+    console.log();
+    var link = document.createElement("a");
+
+    // Set the href attribute to the zip file URL
+    link.href = data.data;
+
+    // Set the download attribute to force download
+    link.download = `${field.folder}.zip`; // Specify the desired name for the downloaded file
+
+    // Append the anchor element to the document body
+    document.body.appendChild(link);
+
+    // Trigger a click event to start the download
+    link.click();
+
+    // Clean up: remove the anchor element from the document
+   return document.body.removeChild(link);
+    // const blob = new Blob([response.data], { type: response.headers[ 'application/zip'] });
     
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = `${field.folder}.zip`;
+    // const link = document.createElement('a');
+    // link.href = URL.createObjectURL(blob);
+    // link.download = `${field.folder}.zip`;
     
-    return link.click();
+    // return link.click();
   } catch (err) {
     return err;
   }

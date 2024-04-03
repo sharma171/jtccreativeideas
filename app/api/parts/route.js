@@ -47,8 +47,7 @@ export async  function POST(req){
       })
       const s3Link  = await getSignedUrl(s3Client,getZip)
 
-  const zipFile = await Buffer.from(s3Link, 'base64');
-  return new NextResponse(zipFile, { headers: { 'content-type': 'application/zip' } });
+  return  NextResponse.json({data : s3Link}, { success : true}, {status : 200});
    
 
 }
