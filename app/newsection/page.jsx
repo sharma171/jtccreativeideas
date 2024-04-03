@@ -158,8 +158,8 @@ const Page = () => {
                             
                              <li key={i}>
                              <div className="card-inner">
-                                <img src={el.image}/>
-                                 {/* <Image src={el.image}  quality={100} width={100} height={100} className="thumb"/> */}
+                                {/* <img src={el.image}/> */}
+                               <Image src={el.image}  quality={100} width={100} height={100} className="thumb"/>
                                  <div className="info">
 
                                      <div className="tech-info">
