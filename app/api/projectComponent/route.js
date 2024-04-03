@@ -110,13 +110,11 @@ export async  function PATCH(req){
 
 export async function PUT(req) {
   const {link} = await req.json()
-  console.log(link);
   const redisdata = await client.get(`${link}`);
   if(!redisdata){
   const already =  `Select list.project_link, language.language,list.name,list.project_module, list.meta_tags, list.meta_keywords, list.meta_description, list.meta_title, list.project_technologie,  list.project_description, list.id from jtcindia_projects.project_lists as list Left Join jtcindia_projects.project_languages as language On language.id = list.project_language  WHERE list.deleted_by = '0' && list.project_link = '${link}'`
   const data = await executeQuery(already)
   if(data.length == 0)  return NextResponse.json({message : "Project Not Found" }, { success : false}, {status : 200})
-    console.log(data);
       for (let index = 0; index < data.length; index++) {
         const link = data[index].project_link
         const command = new ListObjectsCommand({
@@ -125,7 +123,6 @@ export async function PUT(req) {
           Prefix: `${link}/files/` 
       })
       const url  = await s3Client.send(command)
-      console.log(url);
       url && url.Contents.map(async(el,i) => {
         const mediaType = getMediaType(el.Key);
         const getUrl = new GetObjectCommand({
@@ -146,7 +143,6 @@ export async function PUT(req) {
      
       const langguageName = `Select technology from jtcindia_projects.project_technologies WHERE id IN (${languageId}) `
       const executeQueryApi = await executeQuery(langguageName);
-      console.log(executeQueryApi);
       if(executeQueryApi.length > 0){
         const value = await executeQueryApi.map((el) => el.technology)
      data[index]["project_technologie"] = String(value);

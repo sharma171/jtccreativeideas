@@ -5,7 +5,8 @@ import "../newsection/page.css"
 import Image from 'next/image'
 import Link from 'next/link'
 import { useParams } from "next/navigation";
-import { singleProject } from "../../apis/apis";
+import { projectTopics, singleProject } from "../../apis/apis";
+import Project from "../../components/project/project";
 
 
 
@@ -20,11 +21,20 @@ const Page = () => {
 
     const {project} = useParams()
     const [state, setState] = useState([])
+    const [topics, setTopics] = useState([])
    const getPrjectData = async() => {
 const {data} =  await singleProject(project)
-console.log(data);
+
 return data && setState(data)
    }
+
+const allTopic =  async(id) => {
+    const {data} =  await projectTopics(id)
+    console.log(data);
+    return data && setTopics(data)
+
+}
+
 
    useEffect(() => {
 getPrjectData()
@@ -49,49 +59,10 @@ getPrjectData()
                         <Link href={`/${project}`} className="link active">{project}</Link>
                     </div>
                     <div className="detailed-inner row">
-                    {/* id
-: 
-2
-image1
-: 
-"https://jtcporject.s3.ap-southeast-2.amazonaws.com/education/files/the-rock-black-adam-2020_3314x1865_xtrafondos.com.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIASH3TFKWYKMYXIVWJ%2F20240403%2Fap-southeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240403T093533Z&X-Amz-Expires=900&X-Amz-Signature=894fe68f64889441dc73cd50a3d8ce844400ce0c8f7738e0ac0cd26ddbf46f01&X-Amz-SignedHeaders=host&x-id=GetObject"
-image2
-: 
-"https://jtcporject.s3.ap-southeast-2.amazonaws.com/education/files/the-suicide-squad-2021-movies-sylvester-stallone-pete-5120x3483-6271.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIASH3TFKWYKMYXIVWJ%2F20240403%2Fap-southeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240403T093533Z&X-Amz-Expires=900&X-Amz-Signature=b486563c9661d8e628d5045329de952ac9aa802fb54bef66751ef067667de814&X-Amz-SignedHeaders=host&x-id=GetObject"
-language
-: 
-"C++"
-meta_description
-: 
-"ftugjdr"
-meta_keywords
-: 
-"dytrfgxgf"
-meta_tags
-: 
-"ftydrt"
-meta_title
-: 
-"gftufty"
-name
-: 
-"Education"
-project_description
-: 
-"sd"
-project_link
-: 
-"education"
-project_module
-: 
-"ht tft"
-project_technologie
-: 
-"HTML,CSS,Redis,React"
-video0
-: 
-"https://jtcporject.s3.ap-southeast-2.amazonaws.com/education/files/Chandigarh%20-%20%20Dilpreet%20Dhillon%20%28Full%20Video%29%20Gurlej%20Akhtar%20%C3%AF%C2%BD%C2%9C%20Parmish%20Verma%20%C3%AF%C2%BD%C2%9C%20Latest%20Punjabi%20Song%202023.webm?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIASH3TFKWYKMYXIVWJ%2F20240403%2Fap-southeast-2%2Fs3%2Faws4_request&X-Amz-Date=20240403T093533Z&X-Amz-Expires=900&X-Amz-Signature=04c0a451aa072cc9552fa34c25bd87bca957fbb624842844049c69a7928b1216&X-Amz-SignedHeaders=host&x-id=GetObje */}
-                       {state && state.map((el, i) => (
+  
+                       {state && state.map((el, i) =>{ 
+                        allTopic(el.id)
+                        return(
                         <>
                          <div className="col-md-6 lhs">
                             <div className="carousel-product">
@@ -109,12 +80,7 @@ video0
 
                                 )}
                                 )}
-                                {/* <div className="slide3 slides">
-                                    <Image src='/images/slide 3.png'   width={500} height={500} className="thumb" alt="slideImages"/>
-                                </div>
-                                <div className="slide4 slides">
-                                    <Image src='/images/slide 4.png'   width={500} height={500} className="thumb" alt="slideImages"/>
-                                </div> */}
+                               
                                 <div className="navigation">
                                     <div className="prev">
                                         <svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -168,15 +134,15 @@ video0
                                     </div>
                                     <div className="text">11 Reviews</div>
                                 </div>
-                                <h2 className="det-head">Employee management system project in php project download</h2>
-                                <p className="tech-pointers"><strong>Technology Used</strong> : HTML, AJAX,JQUERY,JAVASCRIPT, PHP5.6, PHP7.x</p>
-                                <p className="tech-pointers"><strong>Project Name</strong> : Employee Record Management System (ERMS)</p>
-                                <p className="tech-pointers"><strong>Total Number of Modules</strong> : There are two modules : admin and user.</p>
-                                <p className="tech-pointers"><strong>Description</strong> : Seamlessly store diverse employee data, from personal details to performance metrics, with ironclad security measures in place. With robust authentication systems, rest assured only authorized personnel access and modify data. Seamlessly store diverse employee data, from personal details to performance metrics, with ironclad security measures in place. With robust authentication systems, rest assured only authorized personnel access and modify data.</p>
+                                <h2 className="det-head">{el.name}</h2>
+                                <p className="tech-pointers"><strong>Technology Used</strong> : {el.project_technologie}</p>
+                                <p className="tech-pointers"><strong>Project Name</strong> : {el.name}</p>
+                                <p className="tech-pointers"><strong>Total Number of Modules</strong> : {el.project_module}</p>
+                                <p className="tech-pointers"><strong>Description</strong> : {el.project_description}</p>
                             </div>
                         </div>
                         </>
-                       ))}
+                       )})}
                         <div className="col-md-6 lhs">
                             <div className="infotab">
                                 <div className="tabhead">
@@ -309,101 +275,7 @@ video0
                                 <div className="tab-nav active">Similar Projects</div>
                                 <div className="tab-nav">Related Courses</div>
                             </div>
-                            <ul className="project-cards">
-                                <li>
-                                    
-                                    <div className="card-inner">
-                                        <Image src='/images/projsection1.png'   width={500} height={500}  alt="project" className="thumb"/>
-                                        <div className="info">
-                                            <div className="tech-info">
-                                                <span>Html</span>
-                                                <span>Css</span>
-                                                <span>Js</span>
-                                            </div>
-                                            <Link href="/newsection" className="text-link">
-                                                <h3 className="heading">
-                                                    Hotel Management System Project in HTML CSS
-                                                </h3>
-                                            </Link>
-                                            <p className="cardpara">
-                                                In this application we believe in the power of collective kindness to transform lives and communities.
-                                            </p>
-                                            <div className="card-button">
-                                                <a href="" className="bot-button">
-                                                    <Image src='/images/Download-icon.svg'  width={10} height={10} alt='icon'/>
-                                                    Download
-                                                </a>
-                                                <a href="" className="bot-button">
-                                                    <Image src='/images/view-icon.svg'  width={10} height={10} alt='icon'/>
-                                                    View
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    
-                                        <div className="card-inner">
-                                            <Image src='/images/projsection2.png'   width={500} height={500}  alt="project" className="thumb"/>
-                                            <div className="info">
-                                                <div className="tech-info">
-                                                    <span>Html</span>
-                                                    <span>Css</span>
-                                                    <span>Js</span>
-                                                </div>
-                                                <Link href="/newsection" className="text-link">
-                                                    <h3 className="heading">
-                                                        Hotel Management System Project in HTML CSS
-                                                    </h3>
-                                                </Link>
-                                                <p className="cardpara">
-                                                    In this application we believe in the power of collective kindness to transform lives and communities.
-                                                </p>
-                                                <div className="card-button">
-                                                    <a href="" className="bot-button">
-                                                        <Image src='/images/Download-icon.svg' width={10} height={10} alt='icon'/>
-                                                        Download
-                                                    </a>
-                                                    <a href="" className="bot-button">
-                                                        <Image src='/images/view-icon.svg' width={10} height={10} alt='icon'/>
-                                                        View
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </li>
-                                <li>
-                                    
-                                        <div className="card-inner">
-                                            <Image src='/images/projsection3.png'  width={500} height={500}  alt="project" className="thumb"/>
-                                            <div className="info">
-                                                <div className="tech-info">
-                                                    <span>Html</span>
-                                                    <span>Css</span>
-                                                    <span>Js</span>
-                                                </div>
-                                                <Link href="/newsection" className="text-link">
-                                                    <h3 className="heading">
-                                                        Hotel Management System Project in HTML CSS
-                                                    </h3>
-                                                </Link>
-                                                <p className="cardpara">
-                                                    In this application we believe in the power of collective kindness to transform lives and communities.
-                                                </p>
-                                                <div className="card-button">
-                                                    <a href="" className="bot-button">
-                                                        <Image src='/images/Download-icon.svg'    width={10} height={10} alt='icon'/>
-                                                        Download
-                                                    </a>
-                                                    <a href="" className="bot-button">
-                                                        <Image src='/images/view-icon.svg'   width={10} height={10}  alt='icon'/>
-                                                        View
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </li>
-                            </ul>
+                            <Project/>
                         </div>
                     </div>
                 </div>
