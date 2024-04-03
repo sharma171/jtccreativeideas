@@ -59,8 +59,9 @@ getPrjectData()
                          <div className="col-md-6 lhs">
                             <div className="carousel-product">
                                 <div className="slide1 slides">
-                                  
-                                  <video width="320" height="240" controls preload="none">      <source src={el.video3} type="video/mp4" />      <track        src={el.video3}        kind="subtitles"        srcLang="en"        label="English"      />      Your browser does not support the video tag.    </video>   
+                                    {/* <Image src='/images/slide1.png'  width={500} height={500} className="thumb" alt="slideImages"/>
+                                     */}
+                                  <video autoPlay width="320" height="240" controls preload="true" className="video-thumb">      <source src={el.video3} type="video/mp4" />      <track        src={el.video3}        kind="subtitles"        srcLang="en"        label="English"      />      Your browser does not support the video tag.    </video>   
                                 </div>
                                 {[0,1,2,3].map((ab) =>{
                                      if(el[`image${ab}`])

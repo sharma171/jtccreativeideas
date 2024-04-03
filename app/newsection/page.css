@@ -528,6 +528,11 @@ section.projects {
     height:350px;
     border-radius: 18px;
 }
+.detailed-inner .lhs .carousel-product .slides:nth-child(1) video.video-thumb {
+    width: 100%;
+    height: 350px;
+    border-radius: 18px;
+}
 .detailed-inner .lhs .carousel-product .slides:nth-child(1) {
     width: 100%;
     height:350px;

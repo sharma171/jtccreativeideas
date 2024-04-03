@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import "./page.css"
 
-
 import { allProject, projectLanguages, projectList } from '../../apis/apis';
 import Project from '../../components/project/project';
 const Page = () => {
@@ -33,15 +32,6 @@ const Page = () => {
         allData()
     },[])
 
-   
-    const projects = async(a) => {
-      
-        const {data} =  await allProject()
-        return data &&  setProjects(data)  
-    }
-// useEffect(() => {
-//     projects()
-// },[arrayOfTech,arrayOfCategory])
 
     return(
         <>
