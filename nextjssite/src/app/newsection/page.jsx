@@ -15,6 +15,15 @@ const Page = () => {
     const toggleFilter = () => {
         setfilterActive(!filterActive);
     }
+    const handleCheckboxData = (event) => {
+        const inputValue = event.target.value;
+        if(event.target.checked){
+            console.log(`value: ${inputValue} Checked`);
+        }
+        else {
+            console.log(`value: ${inputValue} Unchecked`)
+        }
+    }
     return(
         <>
         <section className="projects">
@@ -165,12 +174,60 @@ const Page = () => {
                                 <h3 className="head">Choose Technology</h3>
                             </div>
                             <ul className="filter-techlist">
-                                <li><label htmlFor="checklist1">HTML</label><input type="checkbox" id="checklist1" /></li>
-                                <li><label htmlFor="checklist2">CSS</label><input type="checkbox" id="checklist2" /></li>
-                                <li><label htmlFor="checklist3">JQuery</label><input type="checkbox" id="checklist3" /></li>
-                                <li><label htmlFor="checklist3">CMS</label><input type="checkbox" id="checklist3" /></li>
-                                <li><label htmlFor="checklist3">Code Ignitor</label><input type="checkbox" id="checklist3" /></li>
-                                <li><label htmlFor="checklist3">Php</label><input type="checkbox" id="checklist3" /></li>
+                                <li>
+                                    <label htmlFor="checklist1">HTML</label>
+                                    <input
+                                        type="checkbox"
+                                        id="checklist1"
+                                        value="html"
+                                        onChange={handleCheckboxData}
+                                    />
+                                </li>
+                                <li>
+                                    <label htmlFor="checklist2">CSS</label>
+                                    <input 
+                                        type="checkbox" 
+                                        id="checklist2"
+                                        value="css"
+                                        onChange={handleCheckboxData}
+                                    />
+                                </li>
+                                <li>
+                                    <label htmlFor="checklist3">JQuery</label>
+                                    <input 
+                                        type="checkbox" 
+                                        id="checklist3"
+                                        value="Jquery"
+                                        onChange={handleCheckboxData}
+                                    />
+                                </li>
+                                <li>
+                                    <label htmlFor="checklist3">CMS</label>
+                                    <input 
+                                    type="checkbox" 
+                                    id="checklist3" 
+                                    value="cms"
+                                    onChange={handleCheckboxData}
+                                    />
+                                </li>
+                                <li>
+                                    <label htmlFor="checklist3">Code Ignitor</label>
+                                    <input 
+                                    type="checkbox" 
+                                    id="checklist3" 
+                                    value="codeignitor"
+                                    onChange={handleCheckboxData}
+                                    />
+                                </li>
+                                <li>
+                                    <label htmlFor="checklist3">Php</label>
+                                    <input 
+                                    type="checkbox" 
+                                    id="checklist3" 
+                                    value="php"
+                                    onChange={handleCheckboxData}
+                                    />
+                                </li>
                             </ul>
                             <div className="filter-head">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -181,12 +238,60 @@ const Page = () => {
                                 <h3 className="head">Choose Domain</h3>
                             </div>
                             <ul className="filter-techlist">
-                                <li><label htmlFor="checklist1">Hotel Management System</label><input type="checkbox" id="checklist1" /></li>
-                                <li><label htmlFor="checklist2">News Cms</label><input type="checkbox" id="checklist2" /></li>
-                                <li><label htmlFor="checklist3">Payments Apps</label><input type="checkbox" id="checklist3" /></li>
-                                <li><label htmlFor="checklist3">Property Management System</label><input type="checkbox" id="checklist3" /></li>
-                                <li><label htmlFor="checklist3">Nodejs based Projects</label><input type="checkbox" id="checklist3" /></li>
-                                <li><label htmlFor="checklist3">Employee Management System</label><input type="checkbox" id="checklist3" /></li>
+                                <li>
+                                    <label htmlFor="checklist1">Hotel Management System</label>
+                                <input 
+                                type="checkbox" 
+                                id="checklist1" 
+                                value="hms"
+                                onChange={handleCheckboxData}
+                                />
+                                </li>
+                                <li>
+                                    <label htmlFor="checklist2">News Cms</label>
+                                <input 
+                                type="checkbox" 
+                                id="checklist2" 
+                                value="newscms"
+                                onChange={handleCheckboxData}
+                                />
+                                </li>
+                                <li>
+                                    <label htmlFor="checklist3">Payments Apps</label>
+                                <input 
+                                type="checkbox" 
+                                id="checklist3" 
+                                value="paymentbox"
+                                onChange={handleCheckboxData}
+                                />
+                                </li>
+                                <li>
+                                    <label htmlFor="checklist3">Property Management System</label>
+                                <input 
+                                type="checkbox" 
+                                id="checklist3" 
+                                value="pms"
+                                onChange={handleCheckboxData}
+                                />
+                                </li>
+                                <li>
+                                    <label htmlFor="checklist3">Nodejs based Projects</label>
+                                <input 
+                                type="checkbox" 
+                                id="checklist3"
+                                value="nodebasedprojects"
+                                onChange={handleCheckboxData} 
+                                />
+                                </li>
+                                <li>
+                                    <label htmlFor="checklist3">Employee Management System</label>
+                                <input 
+                                type="checkbox" 
+                                id="checklist3" 
+                                value="EmployeeManagementSystem"
+                                onChange={handleCheckboxData}
+                                />
+                                </li>
                             </ul>
                         </div>
                         <div className="done-button" onClick={toggleFilter}>

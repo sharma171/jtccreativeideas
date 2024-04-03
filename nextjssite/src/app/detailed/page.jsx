@@ -1,7 +1,7 @@
 'use client'
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from 'react';
-import SiteHeader from "../components/header/header";
+// import SiteHeader from "../components/header/header";
 import "../newsection/page.css"
 import Image from 'next/image'
 import Link from 'next/link'
@@ -18,7 +18,7 @@ import SlideImg4 from "./images/slide 4.png"
 const Page = () => {
     return(
         <>
-            <SiteHeader />
+            {/* <SiteHeader /> */}
             <section className="det-page">
                 <div className="container">
                     <div className="top-navigation">
@@ -68,25 +68,6 @@ const Page = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="infotab">
-                                <div className="tabhead">
-                                    <div className="tabnav active">Overview</div>
-                                    <div className="tabnav">Techscape</div>
-                                    <div className="tabnav">Installation</div>
-                                    <div className="tabnav">Modules</div>
-                                </div>
-                                <div className="info-content">
-                                    <p className="tech-pointers"><strong>Project Name</strong> : Employee Record Management System (ERMS)</p>
-                                    <p className="tech-pointers"><strong>Language Used</strong> : Php</p>
-                                    <p className="tech-pointers"><strong>Database</strong> : My SQL</p>
-                                    <p className="tech-pointers"><strong>User Interface Design</strong> : HTML, AJAX,JQUERY,JAVASCRIPT</p>
-                                    <p className="tech-pointers"><strong>Web Browser</strong> : Mozilla, Google Chrome, IE8, OPERA</p>
-                                    <p className="tech-pointers"><strong>Software</strong> : XAMPP / WAMP / Mamp/ Lamp (anyone)</p>
-                                    <p className="tech-pointers"><strong>Employee Record Management System project divided in two modules</strong> : User Module, Admin Module</p>
-                                    <p className="tech-pointers"><strong>Problem solved by this Project?</strong> : By using this project, company can manage all data online. This project will reduce the paperwork for the company.</p>
-                                    <p className="tech-pointers"><strong>What project does and its working?</strong> : Employee Record Management System project used to manage the data of the employees such as personal details, education details, work exp, etc. This project will reduce the paperwork for the company. Through this project, the company can manage all data online.</p>
-                                </div>
-                            </div>
                         </div>
                         <div className="col-md-6 rhs">
                             <div className="product-info">
@@ -125,7 +106,32 @@ const Page = () => {
                                 <p className="tech-pointers"><strong>Technology Used</strong> : HTML, AJAX,JQUERY,JAVASCRIPT, PHP5.6, PHP7.x</p>
                                 <p className="tech-pointers"><strong>Project Name</strong> : Employee Record Management System (ERMS)</p>
                                 <p className="tech-pointers"><strong>Total Number of Modules</strong> : There are two modules : admin and user.</p>
-                                <p className="tech-pointers"><strong>Description</strong> : Seamlessly store diverse employee data, from personal details to performance metrics, with ironclad security measures in place. With robust authentication systems, rest assured only authorized personnel access and modify data.</p>
+                                <p className="tech-pointers"><strong>Description</strong> : Seamlessly store diverse employee data, from personal details to performance metrics, with ironclad security measures in place. With robust authentication systems, rest assured only authorized personnel access and modify data. Seamlessly store diverse employee data, from personal details to performance metrics, with ironclad security measures in place. With robust authentication systems, rest assured only authorized personnel access and modify data.</p>
+                            </div>
+                        </div>
+                        <div className="col-md-6 lhs">
+                            <div className="infotab">
+                                <div className="tabhead">
+                                    <div className="tabnav active">Overview</div>
+                                    <div className="tabnav">Techscape</div>
+                                    <div className="tabnav">Installation</div>
+                                    <div className="tabnav">Modules</div>
+                                </div>
+                                <div className="info-content">
+                                    <p className="tech-pointers"><strong>Project Name</strong> : Employee Record Management System (ERMS)</p>
+                                    <p className="tech-pointers"><strong>Language Used</strong> : Php</p>
+                                    <p className="tech-pointers"><strong>Database</strong> : My SQL</p>
+                                    <p className="tech-pointers"><strong>User Interface Design</strong> : HTML, AJAX,JQUERY,JAVASCRIPT</p>
+                                    <p className="tech-pointers"><strong>Web Browser</strong> : Mozilla, Google Chrome, IE8, OPERA</p>
+                                    <p className="tech-pointers"><strong>Software</strong> : XAMPP / WAMP / Mamp/ Lamp (anyone)</p>
+                                    <p className="tech-pointers"><strong>Employee Record Management System project divided in two modules</strong> : User Module, Admin Module</p>
+                                    <p className="tech-pointers"><strong>Problem solved by this Project?</strong> : By using this project, company can manage all data online. This project will reduce the paperwork for the company.</p>
+                                    <p className="tech-pointers"><strong>What project does and its working?</strong> : Employee Record Management System project used to manage the data of the employees such as personal details, education details, work exp, etc. This project will reduce the paperwork for the company. Through this project, the company can manage all data online.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-6 rhs">
+                            <div className="product-info">
                                 <div className="col-divider"></div>
                                 <h3 className="keypoints-head">This Project includes:</h3>
                                 <div className="keypoints">
@@ -158,9 +164,10 @@ const Page = () => {
                                         Project report and Synopsis
                                     </div>
                                 </div>
+                                
                                 <div className="col-divider"></div>
                                 <div className="project-box">
-                                    <h3 className="keypoints-head">This Project includes:</h3>
+                                    <h3 className="keypoints-head">Download Project Bundle</h3>
                                     <input type="text" placeholder="Name" name="name7" id="name7" required=""></input>
                                     <div className="input-box mb--20">
                                         <input type="tel" id="phone7" className="phone-input" name="phone"
@@ -171,7 +178,7 @@ const Page = () => {
                                         <label for="checkbox-7"> I have reviewed all <Link href="termsandcondition.html" target="_blank"> Terms and
                                                                     Conditions</Link>.</label>
                                     </div>
-                                    <Link href="#" className="button">Download Curriculum</Link>
+                                    <Link href="#" className="button">Download Project</Link>
                                 </div>
                             </div>
                         </div>
