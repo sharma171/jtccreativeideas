@@ -137,10 +137,36 @@ section.projects {
     color: #fff;
     font-weight: 500;
 }
-.more-detailed .project-cards {
+.more-detailed .content-tab.active {
+    display:block;
+}
+.more-detailed .overflow-tab-move {
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    overflow: hidden;
+}
+.more-detailed .content-tab.tab1 {
+    transform: translateX(-100%);
+}
+.more-detailed .content-tab.tab1.active {
+    transform: translateX(0%);
+}
+.more-detailed .content-tab.tab2 {
+    transform: translateX(100%);
+}
+.more-detailed .content-tab.tab2.active {
+    transform: translateX(-100%);
+}
+.more-detailed .content-tab {
+    /* display:none; */
+    
     max-width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
+    transition: all 0.5s;
+    min-width: 100%;
+    width: 100%;
 }
 @media (max-width: 1200px) and (min-width:992px){
     .project-cards li .card-inner .info .tech-info span{

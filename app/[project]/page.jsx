@@ -1,13 +1,13 @@
 'use client'
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useEffect, useState } from 'react';
+import { useRef } from 'react';
 import "../newsection/page.css"
 import Image from 'next/image'
 import Link from 'next/link'
 import { useParams } from "next/navigation";
 import { projectTopics, singleProject } from "../../apis/apis";
 import Project from "../../components/project/project";
-
 
 
 const Page = () => {
@@ -17,6 +17,15 @@ const Page = () => {
             setActiveItem(item);
           }
     };
+
+
+    const [similarProj, setSimilarProj] = useState('tabOne');
+    const handleSimilarProjects = (tabs) => {
+        if (similarProj !== tabs) {
+            setSimilarProj(tabs); 
+        }
+    }
+            
 
 
     const {project} = useParams()
@@ -272,10 +281,17 @@ getPrjectData()
                         </div> */}
                         <div className="more-detailed">
                             <div className="more-nav">
-                                <div className="tab-nav active">Similar Projects</div>
-                                <div className="tab-nav">Related Courses</div>
+                                <div className={`tab-nav ${similarProj === 'tabOne' ? 'active' : ''}`} onClick={() => handleSimilarProjects('tabOne')}>Similar Projects</div>
+                                <div className={`tab-nav ${similarProj === 'tabTwo' ? 'active' : ''}`} onClick={() => handleSimilarProjects('tabTwo')}>Related Courses</div>
                             </div>
-                            <Project/>
+                            <div className="overflow-tab-move">
+                                <div className={`content-tab tab1 ${similarProj === 'tabOne' ? 'active' : ''}`} >
+                                    <Project/>
+                                </div>
+                                <div className={`content-tab tab2 ${similarProj === 'tabTwo' ? 'active' : ''}`} >
+                                    <Project/>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
