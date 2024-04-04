@@ -221,11 +221,11 @@ getPrjectData()
                         <div className="more-detailed">
                             <div className="more-nav">
                                 <div className={`tab-nav ${similarProj === 'tabOne' ? 'active' : ''}`} onClick={() => handleSimilarProjects('tabOne')}>Similar Projects</div>
-                                <div className={`tab-nav ${similarProj === 'tabTwo' ? 'active' : ''}`} onClick={() => handleSimilarProjects('tabTwo')}>Related Courses</div>
+                                <div className={`tab-nav ${similarProj === 'tabTwo' ? 'active' : ''}`} onClick={() => handleSimilarProjects('tabTwo')}>Other Projects</div>
                             </div>
                             <div className="overflow-tab-move">
                                 <div className={`content-tab tab1 ${similarProj === 'tabOne' ? 'active' : ''}`} >
-                                    <Project/>
+                                    <Project project={projectList}/>
                                 </div>
                                 <div className={`content-tab tab2 ${similarProj === 'tabTwo' ? 'active' : ''}`} >
                                     <Project project={projectList}/>
