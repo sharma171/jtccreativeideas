@@ -56,7 +56,11 @@ getPrjectData()
                                 <path d="M4.58398 3L7.58398 6L4.58398 9" stroke="#605F5F" strokeWidth="0.75" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                         </Link>
-                       
+                        <Link href="/newsection" className="link">Projects
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.58398 3L7.58398 6L4.58398 9" stroke="#605F5F" strokeWidth="0.75" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                        </Link>
                         <Link href={`/${project}`} className="link active">{project}</Link>
                     </div>
                     <div className="detailed-inner row">
@@ -64,15 +68,16 @@ getPrjectData()
                   
                          <div className="col-md-6 lhs">
                             <div className="carousel-product">
-                                <div className="slide1 slides">
-                                    {/* {state && state.imageVideos && state.imageVideos.map((ab) => {
+                               
+                                    {state && state.imageVideos && state.imageVideos.map((ab) => {
                                         if(ab.endsWith('.jpg') || ab.endsWith('.png') || ab.endsWith('.jpeg') || ab.endsWith('.gif'))
-                                            return( <Image src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`}  width={500} height={500} className="thumb" alt="slideImages"/>)
+                                            return(  <div className="slide1 slides"><Image src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`}  width={500} height={500} className="thumb" alt="slideImages"/>  </div>)
                                         else return (
-                                        <video loop muted autoPlay width="320" height="240" controls preload="auto" className="video-thumb">      <source src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`} type="video/*" /> <track  src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`}        kind="subtitles"     srcLang="en"    label="English"      />      Your browser does not support the video tag.    </video>   
-                                  )
-                                    })} */}
-                                </div>
+                                            <div className="slide1 slides">
+                                        <video loop muted  width="320" height="240" controls preload="auto" className="video-thumb">  <source src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`} type="video/mp4" /> <track  src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`}        kind="subtitles"     srcLang="en"    label="English"      />      Your browser does not support the video tag.    </video>   
+                                        </div> )
+                                    })}
+                               
                               
                                
                                 <div className="navigation">
@@ -191,27 +196,7 @@ getPrjectData()
                        </>
 
           ))}
-                        {/* <div className="col-md-6 lhs">
-                            <div className="infotab">
-                                <div className="tabhead">
-                                    <div className="tabnav active">Overview</div>
-                                    <div className="tabnav">Techscape</div>
-                                    <div className="tabnav">Installation</div>
-                                    <div className="tabnav">Modules</div>
-                                </div>
-                                <div className="info-content">
-                                    <p className="tech-pointers"><strong>Project Name</strong> : Employee Record Management System (ERMS)</p>
-                                    <p className="tech-pointers"><strong>Language Used</strong> : Php</p>
-                                    <p className="tech-pointers"><strong>Database</strong> : My SQL</p>
-                                    <p className="tech-pointers"><strong>User Interface Design</strong> : HTML, AJAX,JQUERY,JAVASCRIPT</p>
-                                    <p className="tech-pointers"><strong>Web Browser</strong> : Mozilla, Google Chrome, IE8, OPERA</p>
-                                    <p className="tech-pointers"><strong>Software</strong> : XAMPP / WAMP / Mamp/ Lamp (anyone)</p>
-                                    <p className="tech-pointers"><strong>Employee Record Management System project divided in two modules</strong> : User Module, Admin Module</p>
-                                    <p className="tech-pointers"><strong>Problem solved by this Project?</strong> : By using this project, company can manage all data online. This project will reduce the paperwork for the company.</p>
-                                    <p className="tech-pointers"><strong>What project does and its working?</strong> : Employee Record Management System project used to manage the data of the employees such as personal details, education details, work exp, etc. This project will reduce the paperwork for the company. Through this project, the company can manage all data online.</p>
-                                </div>
-                            </div>
-                        </div> */}
+                       
                         <div className="more-detailed">
                             <div className="more-nav">
                                 <div className="tab-nav active">Similar Projects</div>
