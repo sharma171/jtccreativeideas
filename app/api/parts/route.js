@@ -18,6 +18,7 @@ export async  function PATCH(req){
     if(!redisdata){
     const query =  `Select point.project_topic,topic.id,topic.topic, point.point_heading, point.point_details from project_topic_point as point Left join project_topics as topic On point.project_topic=topic.id WHERE FIND_IN_SET(${id},point.project_id) > 0`
     const data = await executeQuery(query)
+    console.log(data);
     if(data.length > 0){
         const value =  await JSON.stringify(data)
         await client.set(`part${id}`, value);
