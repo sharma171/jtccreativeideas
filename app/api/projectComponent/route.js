@@ -36,9 +36,7 @@ export async  function GET(req){
 
 
 export async  function POST(req){
-  // const {arrayOfTech,arrayOfCategory} = await req.json();
-  // console.log("40  ",arrayOfTech);
-  // console.log("41  ",arrayOfCategory);
+
   const redisdata = await client.get("project");
   if(!redisdata){
   const already =  `Select list.project_link, list.name, list.project_technologie,  list.project_description, list.id from jtcindia_projects.project_lists as list Left Join jtcindia_projects.project_languages as language On language.id = list.project_language  WHERE deleted_by = '0'`
@@ -53,14 +51,7 @@ export async  function POST(req){
       })
       const url  = await s3Client.send(command)
       const key = url && url.Contents && url.Contents[1].Key
-     
-        const getUrl = new GetObjectCommand({
-          Bucket :"jtcporject",
-          Key: key
-      })
-
-      const s3Link  = await getSignedUrl(s3Client,getUrl)
-       data[index][`image`] =  String(s3Link)
+       data[index][`image`] =  String(key)
       
       const languageId = data[index].project_technologie
      
@@ -73,6 +64,7 @@ export async  function POST(req){
     }
     const value =  await JSON.stringify(data)
     await client.set("project", value);
+  
     return NextResponse.json({data }, { success : true}, {status : 200})
   }else{ 
     const value = await JSON.parse(redisdata)
@@ -90,10 +82,10 @@ export async  function PATCH(req){
    let findTech = ''
     if(id != 'All')  findProj = `&& project_language = ${id}`
     if(id != 'All')  findTech = `&& FIND_IN_SET(${id}, language_id) > 0`
-    // const query =  `Select tech.technology , project.project_category as name  from  project_lists  as project  Join   project_technologies as tech On tech.id = project.project_technologie   ${findProj}`
+    
     const queryProject = `Select DISTINCT project_category as category  from  project_lists WHERE deleted_by = '0' ${findProj}`
       const dataProject = await executeQuery(queryProject);
-    const queryTech = `Select DISTINCT technology  from   project_technologies  WHERE deleted_by = '0' ${findTech} `
+    const queryTech = `Select DISTINCT technology, id  from   project_technologies  WHERE deleted_by = '0' ${findTech} `
       const dataTech = await executeQuery(queryTech);
      const data = [{project : dataProject, technology : dataTech}]
       if(data.length > 0) {
@@ -143,14 +135,3 @@ export async function PUT(req) {
 }
 
 
-
-function getMediaType(fileName) {
-  const extension = fileName.split('.').pop().toLowerCase();
-  if (['jpg', 'jpeg', 'png', 'gif'].includes(extension)) {
-      return 'image';
-  } else if (['mp4', 'mov', 'avi', 'mkv','webm'].includes(extension)) {
-      return 'video';
-  } else {
-      return 'unknown';
-  }
-}

@@ -2,10 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import "./page.css"
 
-import { allProject, projectLanguages, projectList } from '../../apis/apis';
+import { allFiltewr, allProject, projectLanguages, projectList } from '../../apis/apis';
 import Project from '../../components/project/project';
 const Page = () => {
+    const [project, setProjects] = useState([])
     const [filterActive, setfilterActive] = useState(false);
+
 
     const toggleFilter = () => {
         setfilterActive(!filterActive);
@@ -23,9 +25,45 @@ const Page = () => {
     
     const getLists = async(id) => {
         const {data} =  await projectList(id)
+        projects()
    return data &&  setTech(...data) 
     }
+    let arrayOfTech = []
+    let arrayOfCategory = []
+    const getSeletedTechnology = async(value) => {
+        const find = await arrayOfTech.indexOf(value);
+        if(find >= 0) 
+             await arrayOfTech.splice(find,1 )
+        else 
+             await  arrayOfTech.push(value)
+           
 
+             
+    if(arrayOfTech.length == 0 && arrayOfCategory.length ==0) return projects()
+    else {
+           const {data} =  await allFiltewr(arrayOfTech,arrayOfCategory)
+           return data &&  setProjects(data)  
+    }  
+
+    }
+    const getSeletedCategory = async(value) => {
+        const find = await arrayOfCategory.indexOf(value);
+        if(find >= 0)  await arrayOfCategory.splice(find,1)
+        else    arrayOfCategory.push(value)
+
+    if(arrayOfTech.length == 0 && arrayOfCategory.length ==0) return projects()
+    else {
+           const {data} =  await allFiltewr(arrayOfTech,arrayOfCategory)
+           return data &&  setProjects(data)  
+    }  
+
+    }
+    const projects = async() => {
+      
+        const {data} =  await allProject()
+     
+        return data &&  setProjects(data)  
+    }
 
    
     useEffect(() =>{
@@ -188,7 +226,7 @@ const Page = () => {
                             </div>
                             <ul className="filter-techlist">
                                 {tech && tech.technology && tech.technology.map((el) =>(
-                                    <li><label htmlhtmlFor="checklist2" >{el.technology}</label><input type="checkbox"  onClick={(e) => getSeletedTechnology(el.technology)}/></li>
+                                    <li><label htmlhtmlFor="checklist2" >{el.technology}</label><input type="checkbox"   onClick={() => getSeletedTechnology(el.id)}/></li>
 
                                 ))}
                                        </ul>
@@ -203,7 +241,7 @@ const Page = () => {
                             <ul className="filter-techlist">
                                 {tech && tech.project && tech.project.map((el) =>(
 
-                                <li><label htmlhtmlFor="checklist3">{el.category}</label><input type="checkbox" id="checklist3" onClick={(e) => getSeletedCategory(el.category)}/></li>
+                                <li><label htmlhtmlFor="checklist3">{el.category}</label><input type="checkbox"  id={el.id} value={el.category} onClick={() => getSeletedCategory(el.category)}/></li>
                                 ))}
                                 </ul>
                         </div>
@@ -212,7 +250,7 @@ const Page = () => {
                         </div>
                     </div>
                     <div className="col-md-8 ecom-content">
-                   <Project/>
+                 <Project project={project}/>
                 </div>
                 </div>
             </div>

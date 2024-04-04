@@ -14,30 +14,13 @@ function Page() {
         
       );
     }
-
   };
 
   // Sample content to be filtered
-  const content = [
-    { id: 1, category: 'EmployeeManagementSystem', text: 'Content 1' },
-    { id: 2, category: 'nodebasedprojects', text: 'Content 2' },
-    { id: 3, category: 'EmployeeManagementSystem', text: 'Content 3' },
-    { id: 4, category: 'nodebasedprojects', text: 'Content 4' },
-    { id: 5, category: 'ams', text: 'Content 5' },
-    { id: 6, category: 'ams', text: 'Content 6' },
-    { id: 7, category: 'EmployeeManagementSystem', text: 'Content 7' },
-    { id: 8, category: 'nodebasedprojects', text: 'Content 8' },
-    { id: 9, category: 'pms', text: 'Content 9' },
-    { id: 10, category: 'nodebasedprojects', text: 'Content 10' },
-    { id: 11, category: 'pms', text: 'Content 11' },
-    { id: 12, category: 'nodebasedprojects', text: 'Content 12' },
-  ];
+ 
 
   // Filter content based on checked values
-  const filteredContent = checkedValues.length
-    ? content.filter((item) => checkedValues.includes(item.category))
-    : content;
-   
+
 
   return (
     <div>
@@ -70,11 +53,11 @@ function Page() {
         onChange={handleCheckboxData}
       />
 
-      <ul>
+      {/* <ul>
         {filteredContent.map((item) => (
           <li key={item.id}>{item.text}</li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 }
