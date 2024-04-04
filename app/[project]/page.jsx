@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { useParams } from "next/navigation";
 import { projectTopics, singleProject } from "../../apis/apis";
 import Project from "../../components/project/project";
+import Download from "../../components/project/download";
 
 
 const Page = () => {
@@ -70,7 +71,7 @@ getPrjectData()
                     <div className="detailed-inner row">
   
                        {state && state.map((el, i) =>{ 
-                        allTopic(el.id)
+                      
                         return(
                         <>
                          <div className="col-md-6 lhs">
@@ -242,20 +243,7 @@ getPrjectData()
                                 </div>
                                 
                                 <div className="col-divider"></div>
-                                <div className="project-box">
-                                    <h3 className="keypoints-head">Download Project Bundle</h3>
-                                    <input type="text" placeholder="Name" name="name7" id="name7" required=""></input>
-                                    <div className="input-box mb--20">
-                                        <input type="tel" id="phone7" className="phone-input" name="phone"
-                                            placeholder="Mobile Number" required></input>
-                                    </div>
-                                    <div className="t-and-c">
-                                        <label><input id="checkbox-7" type="checkbox" required=""></input></label>
-                                        <label htmlFor="checkbox-7"> I have reviewed all <Link href="termsandcondition.html" target="_blank"> Terms and
-                                                                    Conditions</Link>.</label>
-                                    </div>
-                                    <Link href="#" className="button">Download Project</Link>
-                                </div>
+                              <Download project={project}/>
                             </div>
                         </div>
                         {/* <div className="col-md-6 lhs">

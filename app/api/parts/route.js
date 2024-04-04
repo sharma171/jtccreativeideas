@@ -4,7 +4,13 @@ import { client } from "../../../middelware/redisFile";
 import { S3Client, GetObjectCommand, PutObjectCommand, ListObjectsCommand } from "@aws-sdk/client-s3"
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
 
-
+const s3Client = new S3Client({
+  region : "ap-southeast-2",
+  credentials:{
+      accessKeyId : process.env.ID,
+      secretAccessKey :process.env.KEY
+  }
+})
 export async  function PATCH(req){
     const {id} = await req.json()
  
@@ -23,4 +29,25 @@ export async  function PATCH(req){
   
      return NextResponse.json({data : value}, { success : true}, {status : 200})
     }
+}
+
+export async  function POST(req){
+    const {folder} = await req.json()
+
+
+    const getUrl = new ListObjectsCommand({
+      Bucket :"jtcporject",
+      Prefix: `${folder}/project/`
+  })
+  const url  = await s3Client.send(getUrl)
+  const key = url && url.Contents && url.Contents[0].Key
+        const getZip = new GetObjectCommand({
+          Bucket :"jtcporject",
+          Key: key
+      })
+      const s3Link  = await getSignedUrl(s3Client,getZip)
+
+  return  NextResponse.json({data : s3Link}, { success : true}, {status : 200});
+   
+
 }
