@@ -1,19 +1,10 @@
-import React, { useEffect, useState } from 'react';
+
 import Image from 'next/image'
 import Link from 'next/link'
-import { allProject, projectLanguages, projectList } from '../../apis/apis';
 
-const Project = () => {
-    const [project, setProjects] = useState([])
-    const projects = async() => {
-      
-        const {data} =  await allProject()
-        return data &&  setProjects(data)  
-    }
-
-    useEffect(() => {
-    projects()
-},[])
+const Project = ({project}) => {
+ 
+  
   return (
     <>
              <ul className="project-cards">
@@ -22,8 +13,8 @@ const Project = () => {
                              <li key={i}>
                              <div className="card-inner">
                                 {/* <img src={el.image}/> */}
-                                <Link href={el.project_link} className="text-link">
-                                 <Image src={el.image} width={400} height={400} className="thumb"/>
+                                <Link href={`/${el.project_link}`} className="text-link">
+                                 <Image src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${el.image}`} width={400} height={400} className="thumb"/>
                                  </Link>
 
                                  <div className="info">
@@ -34,7 +25,7 @@ const Project = () => {
                                          ))}
                                          
                                      </div>
-                                     <Link href={el.project_link} className="text-link">
+                                     <Link href={`/${el.project_link}`} className="text-link">
                                          <h3 className="heading">
                                             {el.name}
                                          </h3>

@@ -28,6 +28,18 @@ export const blogs = async (id) => {
   }
 };
 
+// All Lists of Blogs 
+export const allFiltewr = async (arrayOfTech,arrayOfCategory) => {
+  try {
+    const value =  await JSON.stringify({arrayOfTech,arrayOfCategory})
+    const { data } = await instance.put(parts, value);
+    return data;
+
+  } catch (err) {
+    return err
+  }
+};
+
 // All Language of Projects
 export const projectLanguages = async (id) => {
   try {
@@ -51,9 +63,8 @@ export const projectList = async (id) => {
 };
 
 // All Language of Projects
-export const allProject = async (arrayOfTech,arrayOfCategory) => {
+export const allProject = async () => {
   try {
-    // const value = JSON.stringify({ arrayOfTech,arrayOfCategory})
     const { data } = await instance.post(projectComponent);
     return data;
   } catch (err) {
@@ -90,7 +101,7 @@ export const downloadProject = async (field) => {
 //  handel Download Brousher form
   try {
     const {data} = await instance.post(parts, JSON.stringify(field));
-    console.log();
+
     var link = document.createElement("a");
 
     // Set the href attribute to the zip file URL

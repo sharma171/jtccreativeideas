@@ -6,12 +6,14 @@ import "../newsection/page.css"
 import Image from 'next/image'
 import Link from 'next/link'
 import { useParams } from "next/navigation";
-import { projectTopics, singleProject } from "../../apis/apis";
+import { projectTopics, singleProject, allProject } from "../../apis/apis";
 import Project from "../../components/project/project";
 import Download from "../../components/project/download";
 
 
 const Page = () => {
+    const [projectList, setProjects] = useState([])
+
     const [activeItem, setActiveItem] = useState(1);
 
 
@@ -44,11 +46,16 @@ return data && setState(...data)
 
 const allTopic =  async(id) => {
     const {data} =  await projectTopics(id)
-  console.log(data);
+    projects()
     return data && setTopics(data)
 
 }
 
+const projects = async() => {
+      
+    const {data} =  await allProject()
+    return data &&  setProjects(data)  
+}
 
    useEffect(() => {
 getPrjectData()
@@ -221,7 +228,7 @@ getPrjectData()
                                     <Project/>
                                 </div>
                                 <div className={`content-tab tab2 ${similarProj === 'tabTwo' ? 'active' : ''}`} >
-                                    <Project/>
+                                    <Project project={projectList}/>
                                 </div>
                             </div>
                         </div>
