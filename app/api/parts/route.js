@@ -56,7 +56,7 @@ export async  function POST(req){
 
 export async function PUT(req) {
   const {arrayOfTech,arrayOfCategory} = await req.json()
-  const redisdata = await client.get(`project${[...arrayOfTech], [...arrayOfTech]}`);
+  const redisdata = await client.get(`project${[...arrayOfTech, ...arrayOfTech]}`);
   if(!redisdata){
     let technologyFilter = ``
     if(arrayOfTech.length > 0){
@@ -91,8 +91,7 @@ export async function PUT(req) {
     
   }
   const value =  await JSON.stringify(data)
-  await client.set(`project${[...arrayOfTech], [...arrayOfTech]}`, value);
-
+  await client.set(`project${[...arrayOfTech ,...arrayOfTech]}`, value);
   return NextResponse.json({data }, { success : true}, {status : 200})
 }else{ 
   const value = await JSON.parse(redisdata)
