@@ -16,17 +16,16 @@ const Project = () => {
 },[])
   return (
     <>
-   
-
-
-
-                            <ul className="project-cards">
+             <ul className="project-cards">
                            {project && project.flatMap((el, i) =>(
                             
                              <li key={i}>
                              <div className="card-inner">
                                 {/* <img src={el.image}/> */}
+                                <Link href={el.project_link} className="text-link">
                                  <Image src={el.image} width={400} height={400} className="thumb"/>
+                                 </Link>
+
                                  <div className="info">
 
                                      <div className="tech-info">
@@ -43,7 +42,7 @@ const Project = () => {
                                      <p className="cardpara">
                                         {el.project_description}
                                      </p>
-                                     <div className="card-button">
+                                     {/* <div className="card-button">
                                          <a href="" className="bot-button">
                                              <Image src='./images/Download-icon.svg' width={20} height={20} alt='icon'/>
                                              Download
@@ -52,7 +51,7 @@ const Project = () => {
                                              <Image src='./images/view-icon.svg' width={20} height={20} alt='icon'/>
                                              View
                                          </a>
-                                     </div>
+                                     </div> */}
                                  </div>
                              </div>
                          </li>

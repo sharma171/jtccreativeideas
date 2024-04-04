@@ -26,12 +26,13 @@ const Page = () => {
    const getPrjectData = async() => {
 const {data} =  await singleProject(project)
 
-return data && setState(data)
+
+return data && setState(...data)
    }
 
 const allTopic =  async(id) => {
     const {data} =  await projectTopics(id)
-    console.log(data);
+  
     return data && setTopics(data)
 
 }
@@ -52,35 +53,24 @@ getPrjectData()
                                 <path d="M4.58398 3L7.58398 6L4.58398 9" stroke="#605F5F" strokeWidth="0.75" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                         </Link>
-                        <Link href="/newsection" className="link">Projects
-                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4.58398 3L7.58398 6L4.58398 9" stroke="#605F5F" strokeWidth="0.75" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                        </Link>
+                       
                         <Link href={`/${project}`} className="link active">{project}</Link>
                     </div>
                     <div className="detailed-inner row">
   
-                       {state && state.map((el, i) =>{ 
-                      
-                        return(
-                        <>
+                  
                          <div className="col-md-6 lhs">
                             <div className="carousel-product">
                                 <div className="slide1 slides">
-                                    {/* <Image src='/images/slide1.png'  width={500} height={500} className="thumb" alt="slideImages"/>
-                                     */}
-                                  <video loop muted autoPlay width="320" height="240" controls preload="auto" className="video-thumb">      <source src={el.video3} type="video/mp4" />      <track        src={el.video3}        kind="subtitles"        srcLang="en"        label="English"      />      Your browser does not support the video tag.    </video>   
+                                    {/* {state && state.imageVideos && state.imageVideos.map((ab) => {
+                                        if(ab.endsWith('.jpg') || ab.endsWith('.png') || ab.endsWith('.jpeg') || ab.endsWith('.gif'))
+                                            return( <Image src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`}  width={500} height={500} className="thumb" alt="slideImages"/>)
+                                        else return (
+                                        <video loop muted autoPlay width="320" height="240" controls preload="auto" className="video-thumb">      <source src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`} type="video/*" /> <track  src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`}        kind="subtitles"     srcLang="en"    label="English"      />      Your browser does not support the video tag.    </video>   
+                                  )
+                                    })} */}
                                 </div>
-                                {[0,1,2,3].map((ab) =>{
-                                     if(el[`image${ab}`])
-                                     return   (
-                                <div className="slide2 slides">
-                                    <Image src={el[`image${ab}`]}   width={620} height={340}  className="thumb" alt={el[`image${ab}`]}/>
-                                </div>
-
-                                )}
-                                )}
+                              
                                
                                 <div className="navigation">
                                     <div className="prev">
@@ -135,15 +125,14 @@ getPrjectData()
                                     </div>
                                     <div className="text">11 Reviews</div>
                                 </div>
-                                <h2 className="det-head">{el.name}</h2>
-                                <p className="tech-pointers"><strong>Technology Used</strong> : {el.project_technologie}</p>
-                                <p className="tech-pointers"><strong>Project Name</strong> : {el.name}</p>
-                                <p className="tech-pointers"><strong>Total Number of Modules</strong> : {el.project_module}</p>
-                                <p className="tech-pointers"><strong>Description</strong> : {el.project_description}</p>
+                                <h2 className="det-head">{state && state.name}</h2>
+                                <p className="tech-pointers"><strong>Technology Used</strong> : {state && state.project_technologie}</p>
+                                <p className="tech-pointers"><strong>Project Name</strong> : {state && state.name}</p>
+                                <p className="tech-pointers"><strong>Total Number of Modules</strong> : {state && state.project_module}</p>
+                                <p className="tech-pointers"><strong>Description</strong> : {state && state.project_description}</p>
                             </div>
                         </div>
-                        </>
-                       )})}
+          
                         <div className="col-md-6 lhs">
                             <div className="infotab">
                                 <div className="tabhead">
