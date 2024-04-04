@@ -405,6 +405,12 @@ section.projects {
     margin-top: 0px;
     letter-spacing: 0.3px;
 }
+.ecom-filter .filter-head.active path#two {
+    display: unset;
+}
+.ecom-filter .filter-head path#two {
+    display: none;
+}
 .ecom-filter .filter-head {
     display: flex;
     flex-direction: row;
@@ -415,6 +421,7 @@ section.projects {
     border-radius: 6px;
     padding: 8px 13px;
     gap: 10px;
+    cursor:pointer;
 }
 .ecom-filter .filter-head .head {
     font-size: 18px;
@@ -423,8 +430,11 @@ section.projects {
     color: #ffffff;
     margin: 0;
 }
-.ecom-filter .filter-techlist {
+.ecom-filter .filter-techlist.active {
     display: flex;
+}
+.ecom-filter .filter-techlist {
+    display: none;
     flex-direction: column;
     gap: 16px;
     list-style: none;
@@ -578,6 +588,22 @@ section.projects {
     width: 100%;
     height: 350px;
     border-radius: 18px;
+}
+.detailed-inner .lhs .carousel-product .slides:nth-child(4) video.video-thumb::after {
+    content:"";
+    position: absolute;
+    top:0;
+    left: 0;
+    width:100%;
+    background:#111D8F;
+    height: 109px;
+    border: 18px;
+}
+.detailed-inner .lhs .carousel-product .slides:nth-child(4) video.video-thumb {
+    width: 100%;
+    height: 109px;
+    border-radius: 18px;
+    position: relative;
 }
 .detailed-inner .lhs .carousel-product .slides:nth-child(1) {
     width: 100%;

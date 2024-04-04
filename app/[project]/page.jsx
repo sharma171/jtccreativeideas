@@ -93,6 +93,7 @@ getPrjectData()
                                         <video loop muted  width="320" height="240" controls preload="auto" className="video-thumb">  <source src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`} type="video/mp4" /> <track  src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`}        kind="subtitles"     srcLang="en"    label="English"      />      Your browser does not support the video tag.    </video>   
                                         </div> )
                                     })}
+                                    
                                
                               
                                
@@ -156,17 +157,24 @@ getPrjectData()
                                 <p className="tech-pointers"><strong>Description</strong> : {state && state.project_description}</p>
                             </div>
                         </div>
-          {topics && topics.map((el) => (
-                       <>
                         <div className="col-md-6 lhs">
                             <div className="infotab">
                                 <div className="tabhead">
+                            {topics && topics.map((el) => (
+                                <>
                                     <div className={`tabnav ${activeItem === el.id ? 'active' : 'hide'}`} onClick={() => handleItemClick(el.id)} >{el.topic}</div>
                                     
-                                </div>
+                                </>
+                            ))}
+                            </div>
+                            {topics && topics.map((el) => (
+                                <>
                                 <div className={`info-content ${activeItem === el.project_topic ? 'active' : 'hide'}`}>
                                     <p className="tech-pointers"><strong>{el.point_heading}</strong> : {el.point_details}</p>
+                               
                                 </div>
+                                </>
+                            ))}
                                
                             </div>
                         </div>
@@ -209,9 +217,6 @@ getPrjectData()
                               <Download project={project}/>
                             </div>
                         </div>
-                       </>
-
-          ))}
                        
                         <div className="more-detailed">
                             <div className="more-nav">
