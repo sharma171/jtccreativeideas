@@ -5,10 +5,14 @@ import "./page.css"
 import { allProject, projectLanguages, projectList } from '../../apis/apis';
 import Project from '../../components/project/project';
 const Page = () => {
-    const [filterActive, setfilterActive] = useState(false);
+    const [filterActive, setfilterActive] = useState(true);
+    const [domainActive, setdomainActive] = useState(true);
 
     const toggleFilter = () => {
         setfilterActive(!filterActive);
+    }
+    const toggleDomain = () => {
+        setdomainActive(!filterActive);
     }
     const [state, setState] = useState([])
     const [tech, setTech] = useState([])
@@ -32,6 +36,11 @@ const Page = () => {
         allData()
     },[])
 
+    const [filterHead, setFilterHead] = useState(false);
+
+  const togglefilter = () => {
+    setFilterHead(!isActive); // Toggle the active state
+  };
 
     return(
         <>
@@ -178,7 +187,7 @@ const Page = () => {
                             </h3>
                         </div>
                         <div className="overflow-cont">
-                            <div className="filter-head">
+                            <div className={`filter-head ${filterActive ? 'active' : ''}`} onClick={toggleFilter}>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="10" cy="10" r="10" fill="white"/>
                                     <path id="one" d="M6.5 10H13.5" stroke="#121212" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -186,13 +195,13 @@ const Page = () => {
                                 </svg>
                                 <h3 className="head">Choose Technology</h3>
                             </div>
-                            <ul className="filter-techlist">
+                            <ul className={`filter-techlist ${filterActive ? 'active' : ''}`}>
                                 {tech && tech.technology && tech.technology.map((el) =>(
                                     <li><label htmlhtmlFor="checklist2" >{el.technology}</label><input type="checkbox"  onClick={(e) => getSeletedTechnology(el.technology)}/></li>
 
                                 ))}
                                        </ul>
-                            <div className="filter-head">
+                            <div className={`filter-head ${domainActive ? 'active' : ''}`} onClick={toggleDomain}>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="10" cy="10" r="10" fill="white"/>
                                     <path id="one" d="M6.5 10H13.5" stroke="#121212" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -200,7 +209,7 @@ const Page = () => {
                                 </svg>
                                 <h3 className="head">Choose Domain</h3>
                             </div>
-                            <ul className="filter-techlist">
+                            <ul className={`filter-techlist ${domainActive ? 'active' : ''}`}>
                                 {tech && tech.project && tech.project.map((el) =>(
 
                                 <li><label htmlhtmlFor="checklist3">{el.category}</label><input type="checkbox" id="checklist3" onClick={(e) => getSeletedCategory(el.category)}/></li>
