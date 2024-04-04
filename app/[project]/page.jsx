@@ -13,6 +13,8 @@ import Download from "../../components/project/download";
 
 const Page = () => {
     const [activeItem, setActiveItem] = useState(1);
+
+
     const handleItemClick = (item) => {
         if (activeItem !== item) {
             setActiveItem(item);
@@ -26,13 +28,14 @@ const Page = () => {
    const getPrjectData = async() => {
 const {data} =  await singleProject(project)
 
-
-return data && setState(...data)
+const id = data && data[0].id
+allTopic(id)
+return data && setState(...data) 
    }
 
 const allTopic =  async(id) => {
     const {data} =  await projectTopics(id)
-  
+  console.log(data);
     return data && setTopics(data)
 
 }
@@ -132,59 +135,18 @@ getPrjectData()
                                 <p className="tech-pointers"><strong>Description</strong> : {state && state.project_description}</p>
                             </div>
                         </div>
-          
+          {topics && topics.map((el) => (
+                       <>
                         <div className="col-md-6 lhs">
                             <div className="infotab">
                                 <div className="tabhead">
-                                    <div className={`tabnav ${activeItem === 1 ? 'active' : 'hide'}`} onClick={() => handleItemClick(1)} >Overview</div>
-                                    <div className={`tabnav ${activeItem === 2 ? 'active' : 'hide'}`} onClick={() => handleItemClick(2)} >Techscape</div>
-                                    <div className={`tabnav ${activeItem === 3 ? 'active' : 'hide'}`} onClick={() => handleItemClick(3)} >Installation</div>
-                                    <div className={`tabnav ${activeItem === 4 ? 'active' : 'hide'}`} onClick={() => handleItemClick(4)} >Modules</div>
+                                    <div className={`tabnav ${activeItem === el.id ? 'active' : 'hide'}`} onClick={() => handleItemClick(el.id)} >{el.topic}</div>
+                                    
                                 </div>
-                                <div className={`info-content ${activeItem === 1 ? 'active' : 'hide'}`}>
-                                    <p className="tech-pointers"><strong>Project Name</strong> : Employee Record Management System (ERMS)</p>
-                                    <p className="tech-pointers"><strong>Language Used</strong> : Php</p>
-                                    <p className="tech-pointers"><strong>Database</strong> : My SQL</p>
-                                    <p className="tech-pointers"><strong>User Interface Design</strong> : HTML, AJAX,JQUERY,JAVASCRIPT</p>
-                                    <p className="tech-pointers"><strong>Web Browser</strong> : Mozilla, Google Chrome, IE8, OPERA</p>
-                                    <p className="tech-pointers"><strong>Software</strong> : XAMPP / WAMP / Mamp/ Lamp (anyone)</p>
-                                    <p className="tech-pointers"><strong>Employee Record Management System project divided in two modules</strong> : User Module, Admin Module</p>
-                                    <p className="tech-pointers"><strong>Problem solved by this Project?</strong> : By using this project, company can manage all data online. This project will reduce the paperwork for the company.</p>
-                                    <p className="tech-pointers"><strong>What project does and its working?</strong> : Employee Record Management System project used to manage the data of the employees such as personal details, education details, work exp, etc. This project will reduce the paperwork for the company. Through this project, the company can manage all data online.</p>
+                                <div className={`info-content ${activeItem === el.project_topic ? 'active' : 'hide'}`}>
+                                    <p className="tech-pointers"><strong>{el.point_heading}</strong> : {el.point_details}</p>
                                 </div>
-                                <div className={`info-content ${activeItem === 2 ? 'active' : 'hide'}`}>
-                                    <p className="tech-pointers"><strong>Project Name</strong> : payment Recovery System (ERMS)</p>
-                                    <p className="tech-pointers"><strong>Language Used</strong> : Php</p>
-                                    <p className="tech-pointers"><strong>Database</strong> : My SQL</p>
-                                    <p className="tech-pointers"><strong>User Interface Design</strong> : HTML, AJAX,JQUERY,JAVASCRIPT</p>
-                                    <p className="tech-pointers"><strong>Web Browser</strong> : Mozilla, Google Chrome, IE8, OPERA</p>
-                                    <p className="tech-pointers"><strong>Software</strong> : XAMPP / WAMP / Mamp/ Lamp (anyone)</p>
-                                    <p className="tech-pointers"><strong>Employee Record Management System project divided in two modules</strong> : User Module, Admin Module</p>
-                                    <p className="tech-pointers"><strong>Problem solved by this Project?</strong> : By using this project, company can manage all data online. This project will reduce the paperwork for the company.</p>
-                                    <p className="tech-pointers"><strong>What project does and its working?</strong> : Employee Record Management System project used to manage the data of the employees such as personal details, education details, work exp, etc. This project will reduce the paperwork for the company. Through this project, the company can manage all data online.</p>
-                                </div>
-                                <div className={`info-content ${activeItem === 3 ? 'active' : 'hide'}`}>
-                                    <p className="tech-pointers"><strong>Project Name</strong> : Student Record Management System (ERMS)</p>
-                                    <p className="tech-pointers"><strong>Language Used</strong> : Php</p>
-                                    <p className="tech-pointers"><strong>Database</strong> : My SQL</p>
-                                    <p className="tech-pointers"><strong>User Interface Design</strong> : HTML, AJAX,JQUERY,JAVASCRIPT</p>
-                                    <p className="tech-pointers"><strong>Web Browser</strong> : Mozilla, Google Chrome, IE8, OPERA</p>
-                                    <p className="tech-pointers"><strong>Software</strong> : XAMPP / WAMP / Mamp/ Lamp (anyone)</p>
-                                    <p className="tech-pointers"><strong>Employee Record Management System project divided in two modules</strong> : User Module, Admin Module</p>
-                                    <p className="tech-pointers"><strong>Problem solved by this Project?</strong> : By using this project, company can manage all data online. This project will reduce the paperwork for the company.</p>
-                                    <p className="tech-pointers"><strong>What project does and its working?</strong> : Employee Record Management System project used to manage the data of the employees such as personal details, education details, work exp, etc. This project will reduce the paperwork for the company. Through this project, the company can manage all data online.</p>
-                                </div>
-                                <div className={`info-content ${activeItem === 4 ? 'active' : 'hide'}`}>
-                                    <p className="tech-pointers"><strong>Project Name</strong> : Employee Record Management System (ERMS)</p>
-                                    <p className="tech-pointers"><strong>Language Used</strong> : Php</p>
-                                    <p className="tech-pointers"><strong>Database</strong> : My SQL</p>
-                                    <p className="tech-pointers"><strong>User Interface Design</strong> : HTML, AJAX,JQUERY,JAVASCRIPT</p>
-                                    <p className="tech-pointers"><strong>Web Browser</strong> : Mozilla, Google Chrome, IE8, OPERA</p>
-                                    <p className="tech-pointers"><strong>Software</strong> : XAMPP / WAMP / Mamp/ Lamp (anyone)</p>
-                                    <p className="tech-pointers"><strong>Employee Record Management System project divided in two modules</strong> : User Module, Admin Module</p>
-                                    <p className="tech-pointers"><strong>Problem solved by this Project?</strong> : By using this project, company can manage all data online. This project will reduce the paperwork for the company.</p>
-                                    <p className="tech-pointers"><strong>What project does and its working?</strong> : Employee Record Management System project used to manage the data of the employees such as personal details, education details, work exp, etc. This project will reduce the paperwork for the company. Through this project, the company can manage all data online.</p>
-                                </div>
+                               
                             </div>
                         </div>
                         <div className="col-md-6 rhs">
@@ -226,6 +188,9 @@ getPrjectData()
                               <Download project={project}/>
                             </div>
                         </div>
+                       </>
+
+          ))}
                         {/* <div className="col-md-6 lhs">
                             <div className="infotab">
                                 <div className="tabhead">
