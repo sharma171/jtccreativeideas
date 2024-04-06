@@ -1,11 +1,11 @@
-import React, {useState, useRef} from 'react'
+import React, { useState, useRef } from 'react'
 import Link from 'next/link'
 import { downloadProject } from '../../apis/apis';
 
 
-const Download = ({project}) => {
+const Download = ({ project }) => {
     const [field, setField] = useState({
-        name: "", phone: "", folder : project
+        name: "", phone: "", folder: project
     });
     const [errors, setErrors] = useState({
         name: "", phone: "", checkbox: ""
@@ -45,40 +45,66 @@ const Download = ({project}) => {
         }
 
         setErrors(newErrors);
+
         return isValid;
     };
 
     const submitForm = async (e) => {
+
         e.preventDefault();
-        // if (validateForm()) {
+        if (validateForm()) {
+            console.log("fd");
             field.folder = 'education'
-                await  downloadProject(field).then(() => {
-                    const form = formRef.current;
-                    if (form) {
-                        return  form.reset()
-                        // toast("Syllabus Download Sussessfull")
-                    }
-                })
-        // }
+            console.log("hello");
+            await downloadProject(field).then(() => {
+                const form = formRef.current;
+                if (form) {
+                    return form.reset()
+                    // toast("Syllabus Download Sussessfull")
+                }
+            })
+        }
     };
 
-  return (
-    <div className="project-box">
-    <h3 className="keypoints-head">Download Project Bundle</h3>
-    <input type="text" placeholder="Name" name="name" id="name7" required="" onChange={handelChange}/>
-    <div className="input-box mb--20">
-        <input type="tel" id="phone7" className="phone-input" name="phone"
-            placeholder="Mobile Number" required  onChange={handelChange}/>
-    </div>
-    <div className="t-and-c">
-        <label><input id="checkbox-7" type="checkbox" required=""></input></label>
-        <label htmlFor="checkbox-7"> I have reviewed all <Link href="termsandcondition.html" target="_blank"> Terms and
-                                    Conditions</Link>.</label>
-    </div>
-   
-     <button className="button"  onClick={submitForm} type="button">Download Project</button>
-</div>
-  )
+    return (
+        <div className="project-box">
+            <h3 className="keypoints-head">Download Project Bundle</h3>
+            <form className="login-form" onSubmit={submitForm} id="downloadSyllabus_java" ref={formRef}>
+                <div className="input-box mb--20">
+                    <input type="text" placeholder="Name" name="name" id="name7" onChange={handelChange} />
+                    {errors.name && <span className="error-message red">{errors.name}</span>}
+                </div>
+                <div className="input-box mb--20">
+                    <input type="tel" id="phone7" className="phone-input" name="phone"
+                        placeholder="Mobile Number" onChange={handelChange} />
+                    {errors.phone && <span className="error-message red">{errors.phone}</span>}
+                </div>
+                <div className="t-and-c">
+                    <input id="checkbox-7" name='checkbox' type="checkbox" required />
+                    <label htmlFor="checkbox-7"> I have reviewed all Terms and
+                        Conditions. </label>
+                </div>
+                <button className="rn-btn edu-btn w-100 mb--20" type="submit">
+                    Download Project
+                </button>
+            </form>
+        </div>
+    )
 }
 
 export default Download
+
+
+
+{/* <input type="text" placeholder="Name" name="name" id="name7" required="" onChange={handelChange}/>
+<div className="input-box mb--20">
+    <input type="tel" id="phone7" className="phone-input" name="phone"
+        placeholder="Mobile Number" required  onChange={handelChange}/>
+</div>
+<div className="t-and-c">
+    <label><input id="checkbox-7"  type="checkbox" required=""></input></label>
+    <label htmlFor="checkbox-7"> I have reviewed all <Link href="termsandcondition.html" target="_blank"> Terms and
+                                Conditions</Link>.</label>
+</div>
+
+ <button className="button"  onClick={submitForm} type="button">Download Project</button> */}
