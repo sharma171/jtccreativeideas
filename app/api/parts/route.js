@@ -69,7 +69,7 @@ export async  function POST(req){
         const options = {message, subject};
   
       //  await sendEmail(options)
-    
+   
     const getUrl = new ListObjectsCommand({
       Bucket :"jtcporject",
       Prefix: `${folder}/project/`
