@@ -599,28 +599,20 @@ section.projects {
     flex-wrap: wrap;
     position: relative;
 }
-.detailed-inner .lhs .carousel-product .slides:nth-child(1) .thumb {
+.detailed-inner .lhs .carousel-product .slides.active .thumb {
     height:350px;
+    width: 100%;
     border-radius: 18px;
 }
-.detailed-inner .lhs .carousel-product .slides:nth-child(1) video.video-thumb {
+
+.detailed-inner .lhs .carousel-product .slides.active video.video-thumb {
     width: 100%;
     height: 350px;
     border-radius: 18px;
 }
-.detailed-inner .lhs .carousel-product .slides:nth-child(4) video.video-thumb::after {
-    content:"";
-    position: absolute;
-    top:0;
-    left: 0;
-    width:100%;
-    background:#111D8F;
-    height: 109px;
-    border: 18px;
-}
-.detailed-inner .lhs .carousel-product .slides:nth-child(2) video.video-thumb,
-.detailed-inner .lhs .carousel-product .slides:nth-child(3) video.video-thumb,
-.detailed-inner .lhs .carousel-product .slides:nth-child(4) video.video-thumb {
+
+
+.detailed-inner .lhs .carousel-product .slides video.video-thumb {
     width: 100%;
     height: 109px;
     border-radius: 18px;
@@ -632,21 +624,29 @@ section.projects {
 .detailed-inner .lhs .carousel-product .slides {
     order: 2;
 }
-.detailed-inner .lhs .carousel-product .slides:nth-child(1) {
-    width: 100%;
-    height:350px;
-    border-radius: 18px;
+
+.detailed-inner .lhs .carousel-product .slides {
+    width: calc(33.3333% - 14px);
+    height: 108px;
 }
 .detailed-inner .lhs .carousel-product .slides .thumb {
     width: 100%;
     height: 108px;
+    border-radius: 18px;
+}
+.detailed-inner .lhs .carousel-product .slides.active {
+    width: 100%;
+    height: 350px;
     object-fit: cover;
     border-radius: 18px;
 }
-.detailed-inner .lhs .carousel-product .slides:nth-child(2), .detailed-inner .lhs .carousel-product .slides:nth-child(3), .detailed-inner .lhs .carousel-product .slides:nth-child(4) {
-    width: calc(33.3333% - 14px);
-    height: 108px;
+.detailed-inner .lhs .carousel-product .slides .thumb.active {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 18px;
 }
+
 .detailed-inner .lhs .carousel-product .navigation {
     width: 100%;
     display: flex;
@@ -654,6 +654,7 @@ section.projects {
     justify-content: space-between;
     position: absolute;
     top: 156px;
+    z-index: 10;
 }
 .detailed-inner .lhs .carousel-product .navigation .prev svg, .detailed-inner .lhs .carousel-product .navigation .next svg {
     box-shadow: 0 8px 16px #00000033;
