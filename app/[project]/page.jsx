@@ -130,7 +130,7 @@ getPrjectData()
                                 }
                             })
                             ) : (<>
-                                    <div className="slide1 slides facade"></div>
+                                    <div className="slide1 slides active facade"></div>
                                     <div className="slide1 slides facade"></div>
                                     <div className="slide1 slides facade"></div>
                                     <div className="slide1 slides facade"></div>
