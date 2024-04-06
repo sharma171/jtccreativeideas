@@ -70,15 +70,13 @@ const Download = ({ project }) => {
         <div className="project-box">
             <h3 className="keypoints-head">Download Project Bundle</h3>
             <form className="login-form" onSubmit={submitForm} id="downloadSyllabus_java" ref={formRef}>
-                <div className="input-box mb--20">
-                    <input type="text" placeholder="Name" name="name" id="name7" onChange={handelChange} />
+                    <input type="text" placeholder="Name" name="name" id="name7" onChange={handelChange} className="forminput" />
                     {errors.name && <span className="error-message red">{errors.name}</span>}
-                </div>
                 <div className="input-box mb--20">
-                    <input type="tel" id="phone7" className="phone-input" name="phone"
-                        placeholder="Mobile Number" onChange={handelChange} />
-                    {errors.phone && <span className="error-message red">{errors.phone}</span>}
+                    <input type="tel" id="phone7" className="phone-input forminput" name="phone"
+                        placeholder="Mobile Number" onChange={handelChange}  />
                 </div>
+                    {errors.phone && <span className="error-message red">{errors.phone}</span>}
                 <div className="t-and-c">
                     <input id="checkbox-7" name="checkbox" type="checkbox" onChange={handelChange} />
                     <label htmlFor="checkbox-7"> I have reviewed all Terms and Conditions.</label>

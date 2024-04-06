@@ -4,6 +4,7 @@ import "./page.css"
 
 import { allFiltewr, allProject, projectLanguages, projectList } from '../../apis/apis';
 import Project from '../../components/project/project';
+import Image from 'next/image'
 const Page = () => {
     const [filterActive, setfilterActive] = useState(true);
     const [domainActive, setdomainActive] = useState(true);
@@ -81,110 +82,18 @@ const Page = () => {
 
     return(
         <>
-     {/* <section className="projects">
+     <section className="projects">
             <div className="container">
              <div className="col-flex main-head">
                     <h5 className="small-head">Innovations in Computing</h5>
                     <h3 className="bghead">Projects Empowering <span>Coders
                         <Image src='/after-head-icon.svg' width={10} height={10}></Image></span></h3>
                 </div>
-                <ul className="project-cards">
-                    <li>
-                        
-                        <div className="card-inner">
-                            <Image src={Projimg1} alt="project" className="thumb"></Image>
-                            <div className="info">
-                                <div className="tech-info">
-                                    <span>Html</span>
-                                    <span>Css</span>
-                                    <span>Js</span>
-                                </div>
-                                <Link href="/newsection" className="text-link">
-                                    <h3 className="heading">
-                                        Hotel Management System Project in HTML CSS
-                                    </h3>
-                                </Link>
-                                <p className="cardpara">
-                                    In this application we believe in the power of collective kindness to transform lives and communities.
-                                </p>
-                                <div className="card-button">
-                                    <a href="" className="bot-button">
-                                        <Image src={Downloadicon} alt='icon'></Image>
-                                        Download
-                                    </a>
-                                    <a href="" className="bot-button">
-                                        <Image src={Viewicon} alt='icon'></Image>
-                                        View
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        
-                            <div className="card-inner">
-                                <Image src={Projimg2} alt="project" className="thumb"></Image>
-                                <div className="info">
-                                    <div className="tech-info">
-                                        <span>Html</span>
-                                        <span>Css</span>
-                                        <span>Js</span>
-                                    </div>
-                                    <Link href="/newsection" className="text-link">
-                                        <h3 className="heading">
-                                            Hotel Management System Project in HTML CSS
-                                        </h3>
-                                    </Link>
-                                    <p className="cardpara">
-                                        In this application we believe in the power of collective kindness to transform lives and communities.
-                                    </p>
-                                    <div className="card-button">
-                                        <a href="" className="bot-button">
-                                            <Image src={Downloadicon} alt='icon'></Image>
-                                            Download
-                                        </a>
-                                        <a href="" className="bot-button">
-                                            <Image src={Viewicon} alt='icon'></Image>
-                                            View
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                    </li>
-                    <li>
-                        
-                            <div className="card-inner">
-                                <Image src={Projimg3} alt="project" className="thumb"></Image>
-                                <div className="info">
-                                    <div className="tech-info">
-                                        <span>Html</span>
-                                        <span>Css</span>
-                                        <span>Js</span>
-                                    </div>
-                                    <Link href="/newsection" className="text-link">
-                                        <h3 className="heading">
-                                            Hotel Management System Project in HTML CSS
-                                        </h3>
-                                    </Link>
-                                    <p className="cardpara">
-                                        In this application we believe in the power of collective kindness to transform lives and communities.
-                                    </p>
-                                    <div className="card-button">
-                                        <a href="" className="bot-button">
-                                            <Image src={Downloadicon} alt='icon'></Image>
-                                            Download
-                                        </a>
-                                        <a href="" className="bot-button">
-                                            <Image src={Viewicon} alt='icon'></Image>
-                                            View
-                                        </a>
-                                    </div>
-                                </div>
-                            </div> 
-                    </li>
-                </ul>
+              
+                <Project project={project}/>
+
             </div> 
-        </section> */}
+        </section>
         <section className="project-category">
             <div className="container">
                 <div className="ecom-head">

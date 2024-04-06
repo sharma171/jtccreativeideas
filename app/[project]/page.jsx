@@ -119,7 +119,7 @@ getPrjectData()
                                 );
                                 } else {
                                 return (
-                                    <div className="slide1 slides" key={ab}>
+                                    <div className={`slide1 slides ${index === 0 ? 'active' : ''}`} key={ab}>
                                     <video loop muted width="320" height="240" controls preload="auto" className="video-thumb">
                                         <source src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`} type="video/mp4" />
                                         <track src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`} kind="subtitles" srcLang="en" label="English" />
