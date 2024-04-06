@@ -275,8 +275,8 @@ section.projects {
         overflow-y: hidden;
     }
     .project-cards li {
-        width: 330px;
-        min-width: 300px;
+        width: 270px;
+        min-width: 270px;
     }
     .project-cards li .card-inner .info {
         padding: 12px 12px;
@@ -726,7 +726,7 @@ div.col-divider {
     font-weight: 700;
     margin-bottom: 0;
 }
-.detailed-inner .rhs .product-info .project-box input {
+.detailed-inner .rhs .product-info .project-box .forminput {
     background: #F5F5F5;
     border-radius: 5px;
     border: 0 none;
@@ -737,6 +737,11 @@ div.col-divider {
     color: #454545;
     width: 100%;
     border: 1px solid transparent;
+}
+.detailed-inner .rhs .product-info .project-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 .detailed-inner .rhs .product-info .project-box {
     background: #fff;
@@ -777,6 +782,7 @@ div.col-divider {
     line-height: 32px;
     text-align: center;
     color: #FFFFFF;
+    border: none;
 }
 
 .detailed-inner .lhs .infotab {
@@ -941,6 +947,13 @@ div.col-divider {
     }
 }
 @media (max-width:768px) {
+    .project-cards li .card-inner .info .cardpara {
+        min-height: 50px;
+    }
+    .project-cards li .card-inner .thumb {
+        min-height: 167.60000000000045px;
+        max-height: 167px;
+    }
     .detailed-inner .lhs {
         padding-right: calc(var(--bs-gutter-x)* .5);
     }
@@ -1008,5 +1021,13 @@ div.col-divider {
     .top-navigation .link {
         font-size: 14px;
         text-wrap: nowrap;
+    }
+    .ecom-head .tabs {
+        width: 100%;
+        max-width: 60%;
+        overflow: auto;
+    }
+    .ecom-head .tab-row{
+        min-width: 100%;
     }
 }
