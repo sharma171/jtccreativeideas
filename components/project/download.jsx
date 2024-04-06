@@ -53,8 +53,8 @@ const Download = ({ project }) => {
 
         e.preventDefault();
         // if (validateForm()) {
-           
-            field.folder = 'education'
+         
+            field.folder = project
           
             await downloadProject(field).then(() => {
                 const form = formRef.current;
