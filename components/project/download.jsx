@@ -52,10 +52,10 @@ const Download = ({ project }) => {
     const submitForm = async (e) => {
 
         e.preventDefault();
-        if (validateForm()) {
-            console.log("fd");
+        // if (validateForm()) {
+           
             field.folder = 'education'
-            console.log("hello");
+          
             await downloadProject(field).then(() => {
                 const form = formRef.current;
                 if (form) {
@@ -63,7 +63,7 @@ const Download = ({ project }) => {
                     // toast("Syllabus Download Sussessfull")
                 }
             })
-        }
+        // }
     };
 
     return (
