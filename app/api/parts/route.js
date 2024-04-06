@@ -34,9 +34,42 @@ export async  function PATCH(req){
 }
 
 export async  function POST(req){
-    const {folder} = await req.json()
+    const {name, phone,email,folder} = await req.json()
 
+    const findCource =  `Select id from project_lists  WHERE project_link = '${folder}' `
+    const getCourceQuery = await executeQuery(findCource)
+    if(getCourceQuery.length == 0) return  NextResponse.json({message : "Project Not Found"},{success : false}, {status : 206})
+    const projectId = await getCourceQuery[0].id
+    const query =  `Insert into jtcindia_admin.jtc_enquiry_form SET course = "${projectId}",name = "${name}", email = "${email}" , phone_number = "${phone}",  form_id = '6'`
+  
+     const insertData = await executeQuery(query);
+ 
+  if(insertData.affectedRows ==  0)  return  NextResponse.json({message : "Project Not Found"}, { success : false}, {status : 206});
 
+   
+  
+        const message = `
+        <table style="border-collapse: collapse; border: 2px solid black;width: 50%">
+          <tr>
+              <th style="border: 2px solid black; padding: 8px; font-size: 18px">Name</th>
+              <td style="border: 2px solid black; padding: 8px;font-size: 16px">${name}</td>
+          </tr>
+          <tr>
+              <th style="border: 2px solid black; padding: 8px;font-size: 18px">Phone</th>
+              <td style="border: 2px solid black; padding: 8px;font-size: 16px">${phone}</td>
+          </tr>
+          <tr>
+              <th style="border: 2px solid black; padding: 8px;font-size: 18px">Course</th>
+              <td style="border: 2px solid black; padding: 8px;font-size: 16px">${folder}</td>
+          </tr>
+      </table>
+        `
+         
+        const subject = "Download Project"
+        const options = {message, subject};
+  
+      //  await sendEmail(options)
+   
     const getUrl = new ListObjectsCommand({
       Bucket :"jtcporject",
       Prefix: `${folder}/project/`
@@ -64,11 +97,12 @@ export async function PUT(req) {
     }
     let categoryFilter = ``
     if(arrayOfCategory.length > 0){
-      const category = arrayOfCategory && arrayOfCategory.map((el) => `'${el}'`)
-      categoryFilter = `&& list.project_category IN (${category})`
+      categoryFilter = `&& list.project_category IN ('${arrayOfCategory}')`
+    
     }
 
-  const already =  `Select list.project_link, language.language,list.name,list.project_module, list.meta_tags, list.meta_keywords, list.meta_description, list.meta_title, list.project_technologie,  list.project_description, list.id from jtcindia_projects.project_lists as list Left Join jtcindia_projects.project_languages as language On language.id = list.project_language  WHERE deleted_by = '0' ${technologyFilter} ${categoryFilter}  `
+  const already =  `Select list.project_link, language.language,list.name,list.project_module, list.meta_tags, list.meta_keywords, list.meta_description, list.meta_title, list.project_technologie,  list.project_description, list.id from jtcindia_projects.project_lists as list Left Join jtcindia_projects.project_languages as language On language.id = list.project_language  WHERE deleted_by = '0' ${technologyFilter} ${categoryFilter}`
+  console.log(already);
   const data = await executeQuery(already)
   if(data.length == 0)  return NextResponse.json({message : "Project Not Found" }, { success : false}, {status : 200})
   for (let index = 0; index < data.length; index++) {
@@ -91,7 +125,7 @@ export async function PUT(req) {
     
   }
   const value =  await JSON.stringify(data)
-  await client.set(`project${[...arrayOfTech ,...arrayOfTech]}`, value);
+  await client.set(`project${[...arrayOfTech,"Both",...arrayOfTech]}`, value);
   return NextResponse.json({data }, { success : true}, {status : 200})
 }else{ 
   const value = await JSON.parse(redisdata)
