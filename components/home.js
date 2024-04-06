@@ -4,12 +4,12 @@ import "./hero.css";
 import "./orbit.css";
 // import HeroImg from "./heroImage.svg";
 import Logo from "./header/logo.webp";
-import Automation from "./orbitimage/automation.svg";
-import Webdev from "./orbitimage/webdevelopment.svg";
-import Salesforce from "./orbitimage/saleforce.svg";
-import Javascript from "./orbitimage/javascript.svg";
-import Reactimg from "./orbitimage/react.svg";
-import Kubernotes from "./orbitimage/kubernotes.svg";
+import Automation from "../public/orbitimage/automation.svg";
+import Webdev from "../public/orbitimage/webdevelopment.svg";
+import Salesforce from "../public/orbitimage/saleforce.svg";
+import Javascript from "../public/orbitimage/javascript.svg";
+import Reactimg from "../public/orbitimage/react.svg";
+import Kubernotes from "../public/orbitimage/kubernotes.svg";
 const HomePage = () => {
     return (
         <div className="hero-section">

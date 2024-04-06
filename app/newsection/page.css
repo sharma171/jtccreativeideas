@@ -970,10 +970,10 @@ div.col-divider {
         line-height: 24px;
         min-width: 167px;
     }
-    .detailed-inner .lhs .carousel-product .slides:nth-child(1) {
+    .detailed-inner .lhs .carousel-product .slides.active {
         height: 52vw;
     }
-    .detailed-inner .lhs .carousel-product .slides:nth-child(1) .thumb {
+    .detailed-inner .lhs .carousel-product .slides.active .thumb {
         height: 52vw;
     }
     .detailed-inner .lhs .carousel-product .navigation {
@@ -992,7 +992,10 @@ div.col-divider {
     .detailed-inner .rhs .product-info .project-box {
         margin-bottom: 24px;
     }
-    .detailed-inner .lhs .carousel-product .slides:nth-child(1) video.video-thumb {
+    .detailed-inner .lhs .carousel-product .slides video.video-thumb {
+        height: 20vw;
+    }
+    .detailed-inner .lhs .carousel-product .slides.active video.video-thumb {
         height: 52vw;
     }
     .detailed-inner .lhs .carousel-product .slides .thumb {
