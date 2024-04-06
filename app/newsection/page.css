@@ -6,23 +6,30 @@
 
 @keyframes facade {
     0% {
-       background: #dfdfdf;
+       background: #d5e5e7;
     }
  
     50% {
-       background: #f1f1f1;
+       background:#f8fbfc;
     }
  
     100% {
-       background: #dfdfdf;
+       background: #d5e5e7;
     }
  }
  .facade {
-    background: #d9d9d9;
+    background: #f7f9fc;
     border-radius: 12px;
     animation: facade 1.2s infinite ease-in-out;
  }
 
+section.projects .project-cards {
+    overflow: hidden;
+}
+section.projects .project-cards li {
+    width: calc(33.333333% - 30px);
+    min-width: calc(33.333333% - 30px);
+}
 section.projects {
     padding: 50px 0;
 }
@@ -873,6 +880,10 @@ div.col-divider {
     line-height: 28px;
     color: #36528A;
     margin-bottom: 0;
+}
+.detailed-inner .more-detailed .project-cards {
+    max-width: 100%;
+    overflow: hidden;
 }
 .detailed-inner .more-detailed {
     display: flex;
