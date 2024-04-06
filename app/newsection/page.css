@@ -301,7 +301,9 @@ section.projects {
         gap: 8px;
     }
     .project-cards li .card-inner .info .heading {
-        font-size: 18px;
+        font-size: 22px;
+        line-height: 30px;
+        margin-top: 4px;
     }
     .project-cards li .card-inner .info .cardpara {
         font-size: 15px;
@@ -495,6 +497,10 @@ section.projects {
 }
 .ecompad{
     padding: 0 12px;
+}
+.ecom-content .facade {
+    height: 100vh;
+    width:100%;
 }
 .ecom-content .project-cards {
     margin-top: 0;
@@ -950,6 +956,10 @@ div.col-divider {
     .project-cards li .card-inner .info .cardpara {
         min-height: 50px;
     }
+    .ecom-content .project-cards li .card-inner .thumb {
+        min-height: 200px;
+        max-height: 200px;
+    }
     .project-cards li .card-inner .thumb {
         min-height: 167.60000000000045px;
         max-height: 167px;
@@ -1023,11 +1033,15 @@ div.col-divider {
         text-wrap: nowrap;
     }
     .ecom-head .tabs {
-        width: 100%;
-        max-width: 60%;
+        width: 75%;
+        max-width: 75%;
         overflow: auto;
     }
     .ecom-head .tab-row{
-        min-width: 100%;
+        max-width: 100%;
+    }
+    .ecom-content .project-cards li .card-inner .info {
+        padding: 20px 20px;
+        gap: 6px;
     }
 }
