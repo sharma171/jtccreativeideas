@@ -33,6 +33,13 @@ section.projects .project-cards li {
 section.projects {
     padding: 50px 0;
 }
+section.projects .facade {
+    margin-top: 30px;
+    min-height: 340px;
+}
+section.projects .project-cards {
+    min-height: 340px;
+}
 .main-head .small-head {
     color: #525fe1;
     font-size: 16px;
@@ -193,6 +200,13 @@ section.projects {
     transition: all 0.5s;
     min-width: 100%;
     width: 100%;
+}
+.more-detailed .content-tab .facade {
+    height: 453px;
+    margin-top: 30px;
+}
+.more-detailed .content-tab .project-cards {
+    min-height:453px;
 }
 @media (max-width: 1200px) and (min-width:992px){
     .project-cards li .card-inner .info .tech-info span{
@@ -1054,5 +1068,30 @@ div.col-divider {
     .ecom-content .project-cards li .card-inner .info {
         padding: 20px 20px;
         gap: 6px;
+    }
+    .more-detailed .content-tab .facade {
+        height: 340px;
+        margin-top: 30px;
+        
+    }
+    .more-detailed .content-tab .project-cards {
+        min-height: 340px;
+    }
+    .detailed-inner .more-detailed .project-cards {
+        overflow: auto;
+    }
+    section.projects .facade {
+        margin-top: 30px;
+        min-height: 340px;
+    }
+    section.projects .project-cards {
+        min-height: 340px;
+    }
+    section.projects .project-cards {
+        overflow: auto;
+    }
+    section.projects .project-cards li {
+        width: 270px;
+        min-width: 270px;
     }
 }

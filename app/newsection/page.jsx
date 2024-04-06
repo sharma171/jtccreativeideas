@@ -6,7 +6,7 @@ import { allFiltewr, allProject, projectLanguages, projectList } from '../../api
 import Project from '../../components/project/project';
 import Image from 'next/image'
 const Page = () => {
-    const [filterActive, setfilterActive] = useState(true);
+    const [filterActive, setfilterActive] = useState(false);
     const [domainActive, setdomainActive] = useState(true);
     const [project, setProjects] = useState([])
 

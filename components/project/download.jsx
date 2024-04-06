@@ -82,7 +82,7 @@ const Download = ({ project }) => {
                     <label htmlFor="checkbox-7"> I have reviewed all Terms and Conditions.</label>
                 </div>
                 {errors.checkbox && <span className="error-message red">{errors.checkbox}</span>}
-                <button className="rn-btn edu-btn w-100 mb--20" type="submit">
+                <button className="rn-btn edu-btn w-100 mb--20 button" type="submit">
                     Download Project
                 </button>
             </form>
