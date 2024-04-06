@@ -114,17 +114,17 @@ getPrjectData()
                                 if (ab.endsWith('.jpg') || ab.endsWith('.png') || ab.endsWith('.jpeg') || ab.endsWith('.gif')) {
                                 return (
                                     <div className={`slide1 slides ${index === 0 ? 'active' : ''}`} key={ab}>
-                                    <Image src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`} width={500} height={500} className="thumb" alt="slideImages" />
+                                        <Image src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`} width={500} height={500} className="thumb" alt="slideImages" />
                                     </div>
                                 );
                                 } else {
                                 return (
                                     <div className={`slide1 slides ${index === 0 ? 'active' : ''}`} key={ab}>
-                                    <video loop muted width="320" height="240" controls preload="auto" className="video-thumb">
-                                        <source src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`} type="video/mp4" />
-                                        <track src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`} kind="subtitles" srcLang="en" label="English" />
-                                        Your browser does not support the video tag.
-                                    </video>
+                                        <video loop muted width="320" height="240" controls preload="auto" className="video-thumb">
+                                            <source src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`} type="video/mp4" />
+                                            <track src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`} kind="subtitles" srcLang="en" label="English" />
+                                            Your browser does not support the video tag.
+                                        </video>
                                     </div>
                                 );
                                 }
