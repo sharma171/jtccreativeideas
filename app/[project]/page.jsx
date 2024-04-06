@@ -12,6 +12,29 @@ import Download from "../../components/project/download";
 
 
 const Page = () => {
+
+            const [currentSlide, setCurrentSlide] = useState(0);
+
+        useEffect(() => {
+            const slides = document.querySelectorAll('.slides');
+            slides.forEach((slide, index) => {
+            if (index === currentSlide) {
+                slide.classList.add('active');
+            } else {
+                slide.classList.remove('active');
+            }
+            });
+        }, [currentSlide]);
+
+        const nextSlide = () => {
+            setCurrentSlide((prevSlide) => (prevSlide === 3 ? 0 : prevSlide + 1));
+        };
+
+        const prevSlide = () => {
+            setCurrentSlide((prevSlide) => (prevSlide === 0 ? 3 : prevSlide - 1));
+        };
+
+
     const [projectList, setProjects] = useState([])
 
     const [activeItem, setActiveItem] = useState(1);
@@ -85,20 +108,40 @@ getPrjectData()
                          <div className="col-md-6 lhs">
                             <div className="carousel-product">
                                
-                                    {state && state.imageVideos && state.imageVideos.map((ab) => {
-                                        if(ab.endsWith('.jpg') || ab.endsWith('.png') || ab.endsWith('.jpeg') || ab.endsWith('.gif'))
-                                            return(  <div className="slide1 slides"><Image src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`}  width={500} height={500} className="thumb" alt="slideImages"/>  </div>)
-                                        else return (
-                                            <div className="slide1 slides">
-                                        <video loop muted  width="320" height="240" controls preload="auto" className="video-thumb">  <source src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`} type="video/mp4" /> <track  src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`}        kind="subtitles"     srcLang="en"    label="English"      />      Your browser does not support the video tag.    </video>   
-                                        </div> )
-                                    })}
+                            {state && state.imageVideos ? (
+                            state.imageVideos.map((ab) => {
+                                if (ab.endsWith('.jpg') || ab.endsWith('.png') || ab.endsWith('.jpeg') || ab.endsWith('.gif')) {
+                                return (
+                                    <div className="slide1 slides" key={ab}>
+                                    <Image src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`} width={500} height={500} className="thumb" alt="slideImages" />
+                                    </div>
+                                );
+                                } else {
+                                return (
+                                    <div className="slide1 slides" key={ab}>
+                                    <video loop muted width="320" height="240" controls preload="auto" className="video-thumb">
+                                        <source src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`} type="video/mp4" />
+                                        <track src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`} kind="subtitles" srcLang="en" label="English" />
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    </div>
+                                );
+                                }
+                            })
+                            ) : (<>
+                                    <div className="slide1 slides facade"></div>
+                                    <div className="slide1 slides facade"></div>
+                                    <div className="slide1 slides facade"></div>
+                                    <div className="slide1 slides facade"></div>
+                                </>
+                            )}
+
                                     
                                
                               
                                
                                 <div className="navigation">
-                                    <div className="prev">
+                                    <div className="prev" onClick={prevSlide}>
                                         <svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <rect width="41" height="41" rx="20.5" fill="white"/>
                                             <path d="M14 20H28" stroke="#6C7275" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -106,7 +149,7 @@ getPrjectData()
                                             <path d="M14 20L20 14" stroke="#6C7275" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                         </svg>
                                     </div>
-                                    <div className="next">
+                                    <div className="next" onClick={nextSlide}>
                                         <svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <rect x="41" y="41" width="41" height="41" rx="20.5" transform="rotate(-180 41 41)" fill="white"/>
                                             <path d="M27 21L13 21" stroke="#141718" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
