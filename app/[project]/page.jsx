@@ -17,6 +17,7 @@ const Page = () => {
 
         useEffect(() => {
             const slides = document.querySelectorAll('.slides');
+
             slides.forEach((slide, index) => {
             if (index === currentSlide) {
                 slide.classList.add('active');
@@ -109,10 +110,10 @@ getPrjectData()
                             <div className="carousel-product">
                                
                             {state && state.imageVideos ? (
-                            state.imageVideos.map((ab) => {
+                            state.imageVideos.map((ab, index) => {
                                 if (ab.endsWith('.jpg') || ab.endsWith('.png') || ab.endsWith('.jpeg') || ab.endsWith('.gif')) {
                                 return (
-                                    <div className="slide1 slides" key={ab}>
+                                    <div className={`slide1 slides ${index === 0 ? 'active' : ''}`} key={ab}>
                                     <Image src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${ab}`} width={500} height={500} className="thumb" alt="slideImages" />
                                     </div>
                                 );
@@ -129,7 +130,7 @@ getPrjectData()
                                 }
                             })
                             ) : (<>
-                                    <div className="slide1 slides facade"></div>
+                                    <div className="slide1 slides active facade"></div>
                                     <div className="slide1 slides facade"></div>
                                     <div className="slide1 slides facade"></div>
                                     <div className="slide1 slides facade"></div>
