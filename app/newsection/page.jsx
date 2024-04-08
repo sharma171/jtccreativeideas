@@ -34,44 +34,6 @@ const Page = () => {
         const {data} =  await projectList(id)
    return data &&  setTech(...data) 
     }
-    let arrayOfTech = [];
-    let arrayOfCategory = [];
-    
-    const getSeletedTechnology = async (value) => {
-        const index = arrayOfTech.indexOf(value);
-        const updatedTechArray = [...arrayOfTech]; // Create a copy of arrayOfTech
-        
-        if (index >= 0) 
-           { updatedTechArray.splice(index, 1);
-            const { data } = await allFiltewr(updatedTechArray, arrayOfCategory);
-            
-           return data && setProjects(data);
-        }
-        else 
-           { updatedTechArray.push(value);
-        
-        const { data } = await allFiltewr(updatedTechArray, arrayOfCategory);
-      return  data && setProjects(data);
-    }
-    }
-    
-    const getSeletedCategory = async (value) => {
-        const index = arrayOfCategory.indexOf(value);
-        const updatedCategoryArray = [...arrayOfCategory]; // Create a copy of arrayOfCategory
-        if (index >= 0) 
-          {  updatedCategoryArray.splice(index, 1);
-            
-        const { data } = await allFiltewr(arrayOfTech, updatedCategoryArray);
-       return data && setProjects(data);
-    }
-        else 
-        {    updatedCategoryArray.push(value);
-            
-        const { data } = await allFiltewr(arrayOfTech, updatedCategoryArray);
-       return data && setProjects(data);
-        }
-    }
-    
 
     
 	function checkboxTechnology(e){
@@ -103,8 +65,7 @@ const Page = () => {
 					return id!==value
 				})
 			})
-		}
-      
+		} 
 	}
 
 
@@ -114,9 +75,7 @@ const Page = () => {
     }
 
     const projects = async() => {
-      
         const {data} =  await allProject()
-       
         return data &&  setProjects(data)  
     }
 
@@ -193,8 +152,6 @@ useEffect(() => {
                             </div>
                             <ul className={`filter-techlist ${filterActive ? 'active' : ''}`}>
                                 {tech && tech.technology && tech.technology.map((el) =>(
-//                         <input type="checkbox" checked={ selectedTech.includes( item.id ) } value={item.id} onChange={checkboxHandler}    />
-
                                     <li><label htmlhtmlFor="checklist2" >{el.technology}</label><input type="checkbox"  checked={ selectedTech.includes( el.id ) } value={el.id} onChange={checkboxTechnology}     /></li>
 
                                 ))}
