@@ -8,6 +8,7 @@ import Image from 'next/image'
 const Page = () => {
     const [filterActive, setfilterActive] = useState(true);
     const [domainActive, setdomainActive] = useState(true);
+
     const [project, setProjects] = useState([])
 
     const toggleFilter = () => {
@@ -35,36 +36,36 @@ const Page = () => {
     let arrayOfCategory = []
     const getSeletedTechnology = async (value) => {
         const index = arrayOfTech.indexOf(value);
-        if (index >= 0) {
-            arrayOfTech.splice(index, 1);
-         } else {
-            arrayOfTech.push(value);
-        }
-        dataFilter()
-      
+        if (index >= 0) 
+           return arrayOfTech.splice(1, index);
+         else 
+          return  arrayOfTech.push(value);
+        
+     
+      l
     }
     
     const getSeletedCategory = async (value) => {
         const index = arrayOfCategory.indexOf(value);
-        if (index >= 0) {
-            arrayOfCategory.splice(index, 1);
-            dataFilter()
-        } else {
+        if (index >= 0) 
+            arrayOfCategory.splice(1, index);
+       else 
             arrayOfCategory.push(value);
-            dataFilter()
-        }
-      
+    
+   console.log(arrayOfCategory);
     }
 
     const dataFilter = async() => {
         const { data } = await allFiltewr(arrayOfTech, arrayOfCategory);
+        getLists(0)
         return data && setProjects(data);
     }
 
     const projects = async() => {
       
         const {data} =  await allProject()
-     
+        getSeletedCategory()
+        getSeletedTechnology()
         return data &&  setProjects(data)  
     }
 
@@ -156,7 +157,7 @@ const Page = () => {
                                 ))}
                                 </ul>
                         </div>
-                        <div className="done-button" onClick={toggleFilter}>
+                        <div className="done-button" onClick={() =>  dataFilter()} style={{cursor : 'pointer'}}>
                             Done
                         </div>
                     </div>

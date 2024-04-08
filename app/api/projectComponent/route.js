@@ -90,7 +90,7 @@ export async  function PATCH(req){
      const data = [{project : dataProject, technology : dataTech}]
       if(data.length > 0) {
       const value =  await JSON.stringify(data)
-      await client.set(`viode${id}`, value);
+      await client.set(`techNologye${id}`, value);
         return NextResponse.json({data},{success : true}, {status : 200})
       }
       else return NextResponse.json({message : "Data Empty"},{success : false}, {status : 206})
