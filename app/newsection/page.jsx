@@ -6,7 +6,7 @@ import { allFiltewr, allProject, projectLanguages, projectList } from '../../api
 import Project from '../../components/project/project';
 import Image from 'next/image'
 const Page = () => {
-    const [filterActive, setfilterActive] = useState(false);
+    const [filterActive, setfilterActive] = useState(true);
     const [domainActive, setdomainActive] = useState(true);
     const [project, setProjects] = useState([])
 
@@ -22,46 +22,45 @@ const Page = () => {
 
     const allData = async() =>{
         const {data} = await projectLanguages()
-        getLists('All')
+        getLists(0)
         return data && setState(data)
        
     }
     
     const getLists = async(id) => {
         const {data} =  await projectList(id)
-        projects()
    return data &&  setTech(...data) 
     }
     let arrayOfTech = []
     let arrayOfCategory = []
-    const getSeletedTechnology = async(value) => {
-        const find = await arrayOfTech.indexOf(value);
-        if(find >= 0) 
-             await arrayOfTech.splice(find,1 )
-        else 
-             await  arrayOfTech.push(value)
-           
-
-             
-    if(arrayOfTech.length == 0 && arrayOfCategory.length ==0) return projects()
-    else {
-           const {data} =  await allFiltewr(arrayOfTech,arrayOfCategory)
-           return data &&  setProjects(data)  
-    }  
-
+    const getSeletedTechnology = async (value) => {
+        const index = arrayOfTech.indexOf(value);
+        if (index >= 0) {
+            arrayOfTech.splice(index, 1);
+         } else {
+            arrayOfTech.push(value);
+        }
+        dataFilter()
+      
     }
-    const getSeletedCategory = async(value) => {
-        const find = await arrayOfCategory.indexOf(value);
-        if(find >= 0)  await arrayOfCategory.splice(find,1)
-        else    arrayOfCategory.push(value)
-
-    if(arrayOfTech.length == 0 && arrayOfCategory.length ==0) return projects()
-    else {
-           const {data} =  await allFiltewr(arrayOfTech,arrayOfCategory)
-           return data &&  setProjects(data)  
-    }  
-
+    
+    const getSeletedCategory = async (value) => {
+        const index = arrayOfCategory.indexOf(value);
+        if (index >= 0) {
+            arrayOfCategory.splice(index, 1);
+            dataFilter()
+        } else {
+            arrayOfCategory.push(value);
+            dataFilter()
+        }
+      
     }
+
+    const dataFilter = async() => {
+        const { data } = await allFiltewr(arrayOfTech, arrayOfCategory);
+        return data && setProjects(data);
+    }
+
     const projects = async() => {
       
         const {data} =  await allProject()
@@ -72,13 +71,8 @@ const Page = () => {
    
     useEffect(() =>{
         allData()
+        projects()
     },[])
-
-    const [filterHead, setFilterHead] = useState(false);
-
-  const togglefilter = () => {
-    setFilterHead(!isActive); // Toggle the active state
-  };
 
     return(
         <>

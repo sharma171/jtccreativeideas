@@ -19,12 +19,12 @@ const Project = ({ project }) => {
       ) : (
         // Render project cards if loading is false
         <ul className="project-cards">
-          {project.flatMap((el, i) => (
+          {project.length > 0 ? project.flatMap((el, i) => (
             <li key={i}>
               <div className="card-inner">
-                <Link href={`/${el.project_link}`} className="text-link">
-                  <Image src={`https://jtcporject.s3.ap-southeast-2.amazonaws.com/${el.image}`} width={400} height={400} className="thumb" />
-                </Link>
+                {/* <Link href={`/${el.project_link}`} className="text-link">
+                  <Image src={`https://jtcprojects.s3.ap-southeast-2.amazonaws.com/${el.image}`} width={400} height={400} className="thumb" />
+                </Link> */}
                 <div className="info">
                   <div className="tech-info">
                     {el.project_technologie && el.project_technologie.map((ab) => (
@@ -38,7 +38,9 @@ const Project = ({ project }) => {
                 </div>
               </div>
             </li>
-          ))}
+          )) : 
+           <h1>No Project Found in this category</h1>
+           }
         </ul>
       )}
     </>

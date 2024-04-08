@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['jtcporject.s3.ap-southeast-2.amazonaws.com'],
+        domains: ['jtcprojects.s3.ap-southeast-2.amazonaws.com'],
       
       },
 };
