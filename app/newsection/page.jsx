@@ -71,6 +71,7 @@ const Page = () => {
 
     const filterData = async () => {
         const {data}  = await allFiltewr(selectedTech, selectedCat);
+        if(!selectedCat && !selectedTech) projects()
         return data && setProjects(data);
     }
 
@@ -80,13 +81,14 @@ const Page = () => {
     }
 
     
-useEffect(() => {
-    filterData()
-},[selectedTech, selectedCat])
-   
+    useEffect(() => {
+        filterData()
+    },[selectedTech, selectedCat])
+    
     useEffect(() =>{
         allData()
         projects()
+   
     },[])
 
     return(
