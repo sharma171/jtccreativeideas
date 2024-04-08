@@ -89,13 +89,13 @@ export async  function POST(req){
 
 export async function PUT(req) {
   const {arrayOfTech,arrayOfCategory} = await req.json()
-  // const redisdata = await client.get(`project${[...arrayOfTech,"Both",...arrayOfTech]}`);
-  // if(!redisdata){
+  const redisdata = await client.get(`project${[...arrayOfTech,"Both",...arrayOfTech]}`);
+  if(!redisdata){
     let technologyFilter = ``
     if(arrayOfTech.length > 0){
       const conditionArray = arrayOfTech.map(value => ` && FIND_IN_SET('${value}', list.project_technologie) > 0`);
  technologyFilter = conditionArray.join(' ');
-      // technologyFilter = `&&  list.project_technologie IN (${arrayOfTech})`
+    
     }
     let categoryFilter = ``
     if(arrayOfCategory.length > 0){
@@ -131,9 +131,9 @@ export async function PUT(req) {
   const value =  await JSON.stringify(data)
   await client.set(`project${[...arrayOfTech,"Both",...arrayOfTech]}`, value);
   return NextResponse.json({data }, { success : true}, {status : 200})
-// }else{ 
-//   const value = await JSON.parse(redisdata)
+}else{ 
+  const value = await JSON.parse(redisdata)
 
-//   return NextResponse.json({data : value}, { success : true}, {status : 200})
-// }
+  return NextResponse.json({data : value}, { success : true}, {status : 200})
+}
 }
